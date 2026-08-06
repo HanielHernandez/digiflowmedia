@@ -1,4 +1,4 @@
-import { defineField, defineType } from "sanity";
+import { defineArrayMember, defineField, defineType } from "sanity";
 
 export const page = defineType({
   name: "page",
@@ -15,11 +15,12 @@ export const page = defineType({
       name: "slug",
       title: "Slug",
       type: "slug",
-      description: 'Use "/" for the home page. Other pages use paths like "about".',
+      description:
+        'Use "/" for the home page. Other pages use paths like "about".',
       options: {
         source: "name",
         maxLength: 96,
-        slugify: (input) => {
+        slugify: (input: string) => {
           const value = input.trim().toLowerCase();
           if (value === "/" || value === "home" || value === "homepage") {
             return "/";
@@ -33,7 +34,7 @@ export const page = defineType({
         },
       },
       validation: (rule) =>
-        rule.required().custom((slug) => {
+        rule.required().custom((slug: { current?: string } | undefined) => {
           if (!slug?.current) return "Slug is required";
           return true;
         }),
@@ -46,15 +47,15 @@ export const page = defineType({
     defineField({
       name: "blocks",
       title: "Blocks",
-      type: "array",
+      type: "array" as const,
       of: [
-        { type: "heroSection" },
-        { type: "serviceBlock" },
-        { type: "aboutUsBlock" },
-        { type: "metricsBlock" },
-        { type: "bannerBlock" },
-        { type: "technologiesBlock" },
-        { type: "contactFormBlock" },
+        defineArrayMember({ type: "heroSection" }),
+        defineArrayMember({ type: "serviceBlock" }),
+        defineArrayMember({ type: "aboutUsBlock" }),
+        defineArrayMember({ type: "metricsBlock" }),
+        defineArrayMember({ type: "bannerBlock" }),
+        defineArrayMember({ type: "technologiesBlock" }),
+        defineArrayMember({ type: "contactFormBlock" }),
       ],
     }),
   ],

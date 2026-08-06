@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { SanityPageView } from "@/components/sanity-page";
+import { renderSanityPage } from "@/components/sanity-page";
 import { getPageBySlug, pathToSlug } from "@/sanity/lib/pages";
 
 type PageProps = {
@@ -21,5 +21,5 @@ export async function generateMetadata({
 export default async function SlugPage({ params }: PageProps) {
   const { slug: segments } = await params;
 
-  return <SanityPageView slug={pathToSlug(segments)} />;
+  return renderSanityPage(pathToSlug(segments));
 }

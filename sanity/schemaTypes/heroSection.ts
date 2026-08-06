@@ -14,7 +14,7 @@ export const heroSection = defineType({
     defineField({
       name: "subtitle",
       title: "Subtitle",
-      type: "text",
+      type: "text" as const,
       rows: 3,
     }),
     defineField({

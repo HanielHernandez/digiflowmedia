@@ -1,22 +1,24 @@
-import { defineArrayMember, defineField, defineType } from "sanity";
+import { defineArrayMember, defineType } from "sanity";
+
+import { field } from "./define";
 
 export const aboutUsBlock = defineType({
   name: "aboutUsBlock",
   title: "About Us Block",
   type: "object",
   fields: [
-    defineField({
+    field({
       name: "eyebrowText",
       title: "Eyebrow Text",
       type: "string",
     }),
-    defineField({
+    field({
       name: "title",
       title: "Title",
       type: "string",
       validation: (rule) => rule.required(),
     }),
-    defineField({
+    field({
       name: "content",
       title: "Content",
       type: "array",
@@ -45,7 +47,7 @@ export const aboutUsBlock = defineType({
                 type: "object",
                 title: "Link",
                 fields: [
-                  defineField({
+                  field({
                     name: "href",
                     type: "url",
                     title: "URL",
@@ -62,7 +64,7 @@ export const aboutUsBlock = defineType({
         }),
       ],
     }),
-    defineField({
+    field({
       name: "image",
       title: "Image",
       type: "image",
@@ -86,4 +88,3 @@ export const aboutUsBlock = defineType({
     },
   },
 });
-

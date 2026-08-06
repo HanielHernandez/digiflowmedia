@@ -14,7 +14,7 @@ export const technology = defineType({
     defineField({
       name: "description",
       title: "Description",
-      type: "text",
+      type: "text" as const,
       rows: 4,
     }),
     defineField({

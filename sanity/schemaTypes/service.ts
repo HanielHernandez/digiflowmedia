@@ -38,7 +38,7 @@ export const service = defineType({
     defineField({
       name: "description",
       title: "Description",
-      type: "text",
+      type: "text" as const,
       rows: 4,
     }),
     defineField({

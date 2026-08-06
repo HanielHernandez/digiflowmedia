@@ -3,11 +3,7 @@ import { notFound } from "next/navigation";
 import { PageBlocks } from "@/components/blocks/page-blocks";
 import { getPageBySlug } from "@/sanity/lib/pages";
 
-type SanityPageViewProps = {
-  slug: string;
-};
-
-export async function SanityPageView({ slug }: SanityPageViewProps) {
+export async function renderSanityPage(slug: string) {
   const page = await getPageBySlug(slug);
 
   if (!page) notFound();

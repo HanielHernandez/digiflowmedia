@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { SanityPageView } from "@/components/sanity-page";
+import { renderSanityPage } from "@/components/sanity-page";
 import { getPageBySlug } from "@/sanity/lib/pages";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -12,5 +12,5 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function HomePage() {
-  return <SanityPageView slug="/" />;
+  return renderSanityPage("/");
 }

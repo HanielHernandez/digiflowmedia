@@ -1,4 +1,4 @@
-import { defineField, defineType } from "sanity";
+import { defineArrayMember, defineField, defineType } from "sanity";
 
 export const serviceBlock = defineType({
   name: "serviceBlock",
@@ -25,18 +25,18 @@ export const serviceBlock = defineType({
     defineField({
       name: "description",
       title: "Description",
-      type: "text",
+      type: "text" as const,
       rows: 3,
     }),
     defineField({
       name: "services",
       title: "Services",
-      type: "array",
+      type: "array" as const,
       of: [
-        {
+        defineArrayMember({
           type: "reference",
           to: [{ type: "service" }],
-        },
+        }),
       ],
     }),
   ],

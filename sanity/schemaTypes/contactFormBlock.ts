@@ -1,22 +1,24 @@
-import { defineField, defineType } from "sanity";
+import { defineType } from "sanity";
+
+import { field } from "./define";
 
 export const contactFormBlock = defineType({
   name: "contactFormBlock",
   title: "Contact Form Block",
   type: "object",
   fields: [
-    defineField({
+    field({
       name: "eyebrowText",
       title: "Eyebrow Text",
       type: "string",
     }),
-    defineField({
+    field({
       name: "title",
       title: "Title",
       type: "string",
       validation: (rule) => rule.required(),
     }),
-    defineField({
+    field({
       name: "subtitle",
       title: "Subtitle",
       type: "text",

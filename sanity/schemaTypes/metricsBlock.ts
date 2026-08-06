@@ -22,7 +22,7 @@ export const metricsBlock = defineType({
     defineField({
       name: "metrics",
       title: "Metrics",
-      type: "array",
+      type: "array" as const,
       of: [
         defineArrayMember({
           type: "object",
@@ -61,7 +61,6 @@ export const metricsBlock = defineType({
         }),
       ],
     }),
-
   ],
   preview: {
     select: {

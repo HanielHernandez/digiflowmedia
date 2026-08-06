@@ -1,33 +1,35 @@
-import { defineField, defineType } from "sanity";
+import { defineType } from "sanity";
+
+import { field } from "./define";
 
 export const bannerBlock = defineType({
   name: "bannerBlock",
   title: "Banner Block",
   type: "object",
   fields: [
-    defineField({
+    field({
       name: "eyebrowText",
       title: "Eyebrow Text",
       type: "string",
     }),
-    defineField({
+    field({
       name: "title",
       title: "Title",
       type: "string",
       validation: (rule) => rule.required(),
     }),
-    defineField({
+    field({
       name: "description",
       title: "Description",
       type: "text",
       rows: 4,
     }),
-    defineField({
+    field({
       name: "ctaText",
       title: "CTA Text",
       type: "string",
     }),
-    defineField({
+    field({
       name: "ctaLink",
       title: "CTA Link",
       type: "url",
@@ -37,7 +39,7 @@ export const bannerBlock = defineType({
           scheme: ["http", "https", "mailto", "tel"],
         }),
     }),
-    defineField({
+    field({
       name: "image",
       title: "Image",
       type: "image",
@@ -45,7 +47,7 @@ export const bannerBlock = defineType({
         hotspot: true,
       },
     }),
-    defineField({
+    field({
       name: "orientation",
       title: "Orientation",
       type: "string",
