@@ -1,59 +1,80 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
-import {
-  ArrowRightIcon,
-  BriefcaseIcon,
-  FolderKanbanIcon,
-  MailIcon,
-  UsersIcon,
-} from "lucide-react";
+import { ArrowUpRightIcon, MenuIcon, XIcon } from "lucide-react";
 
 import { Logo } from "@/components/logo";
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { href: "/services", label: "Services", icon: BriefcaseIcon },
-  { href: "/work", label: "Work", icon: FolderKanbanIcon },
-  { href: "/about", label: "About", icon: UsersIcon },
-  { href: "/contact", label: "Contact", icon: MailIcon },
+  { href: "/services", label: "Services" },
+  { href: "/work", label: "Work" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur-md">
-      <div className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between gap-6 px-6">
+    <header className="w-full">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-10">
         <Link href="/" className="shrink-0 transition-opacity hover:opacity-80">
           <Logo />
         </Link>
 
-        <nav aria-label="Primary" className="hidden items-center gap-8 md:flex">
-          {navLinks.map((link) => {
-            const Icon = link.icon;
-
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="inline-flex items-center gap-2 text-body-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-              >
-                <Icon className="size-4" />
-                {link.label}
-              </Link>
-            );
-          })}
-        </nav>
+        <div className="hidden items-center gap-8 text-sm font-medium text-muted-foreground md:flex">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="transition-colors hover:text-foreground"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </div>
 
         <Link
           href="/contact"
-          className={cn(
-            buttonVariants({ size: "sm" }),
-            "hidden sm:inline-flex"
-          )}
+          className="hidden items-center gap-2 rounded-full bg-foreground px-4 py-2 text-sm font-semibold text-background transition-transform hover:-translate-y-0.5 md:flex"
         >
-          Get started
-          <ArrowRightIcon data-icon="inline-end" />
+          Start a project
+          <ArrowUpRightIcon className="size-4" />
         </Link>
-      </div>
+
+        <button
+          type="button"
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="rounded-full border border-border p-2 md:hidden"
+        >
+          {menuOpen ? <XIcon className="size-5" /> : <MenuIcon className="size-5" />}
+        </button>
+      </nav>
+
+      {menuOpen ? (
+        <div className="mx-6 flex flex-col gap-4 rounded-2xl border border-border bg-card p-5 md:hidden">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setMenuOpen(false)}
+              className="text-sm font-medium text-foreground"
+            >
+              {link.label}
+            </Link>
+          ))}
+          <Link
+            href="/contact"
+            onClick={() => setMenuOpen(false)}
+            className="font-semibold text-primary"
+          >
+            Start a project{" "}
+            <ArrowUpRightIcon className="inline size-4" />
+          </Link>
+        </div>
+      ) : null}
     </header>
   );
 }

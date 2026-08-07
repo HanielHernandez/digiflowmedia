@@ -1,97 +1,70 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowUpRightIcon, SparklesIcon } from "lucide-react";
 
-import { buttonVariants } from "@/components/ui/button";
-import type {
-  BannerBlock as BannerBlockType,
-  BannerOrientation,
-} from "@/sanity/lib/pages";
+import type { BannerBlock as BannerBlockType } from "@/sanity/lib/pages";
 import { urlFor } from "@/sanity/lib/image";
-import { cn } from "@/lib/utils";
+import { blockId, cn } from "@/lib/utils";
 
 type BannerBlockProps = {
   block: BannerBlockType;
 };
 
-const layoutClassMap: Record<BannerOrientation, string> = {
-  "left-to-right": "md:grid-cols-2",
-  "right-to-left": "md:grid-cols-2",
-  "top-to-bottom": "grid-cols-1",
-  "bottom-to-top": "grid-cols-1",
-};
-
-const contentOrderClassMap: Record<BannerOrientation, string> = {
-  "left-to-right": "order-1",
-  "right-to-left": "order-2",
-  "top-to-bottom": "order-1",
-  "bottom-to-top": "order-2",
-};
-
-const imageOrderClassMap: Record<BannerOrientation, string> = {
-  "left-to-right": "order-2",
-  "right-to-left": "order-1",
-  "top-to-bottom": "order-2",
-  "bottom-to-top": "order-1",
-};
-
 export function BannerBlock({ block }: BannerBlockProps) {
-  const orientation = block.orientation || "left-to-right";
   const imageUrl = block.image
-    ? urlFor(block.image).width(1400).height(900).url()
+    ? urlFor(block.image).width(400).height(400).url()
     : null;
 
   return (
-    <section className="w-full">
+    <section id={blockId(block.name)} className="w-full px-6 py-8 lg:px-10">
       <div
         className={cn(
-          "mx-auto grid w-full max-w-7xl items-center gap-10 px-6 py-16 md:gap-16",
-          layoutClassMap[orientation]
+          "mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-5 rounded-2xl bg-secondary px-6 py-6 text-secondary-foreground sm:flex-row sm:px-8",
+          imageUrl && "sm:items-stretch"
         )}
       >
-        <div
-          className={cn(
-            "flex flex-col items-start gap-4",
-            contentOrderClassMap[orientation]
+        <div className="flex items-center gap-4">
+          {imageUrl ? (
+            <div className="relative size-14 shrink-0 overflow-hidden rounded-xl">
+              <Image
+                src={imageUrl}
+                alt={block.title || "Banner"}
+                fill
+                className="object-cover"
+                sizes="56px"
+              />
+            </div>
+          ) : (
+            <SparklesIcon className="size-5 shrink-0 text-brand-pink" />
           )}
-        >
-          {block.eyebrowText ? (
-            <p className="text-badge text-primary uppercase tracking-[0.08em]">
-              {block.eyebrowText}
-            </p>
-          ) : null}
-          {block.title ? (
-            <h2 className="font-heading text-h2 max-w-2xl">{block.title}</h2>
-          ) : null}
-          {block.description ? (
-            <p className="text-body-lg text-muted-foreground max-w-2xl">
-              {block.description}
-            </p>
-          ) : null}
-          {block.ctaText && block.ctaLink ? (
-            <Link
-              href={block.ctaLink}
-              className={cn(buttonVariants({ size: "default" }), "mt-2")}
-            >
-              {block.ctaText}
-            </Link>
-          ) : null}
+
+          <div className="flex flex-col gap-1">
+            {block.eyebrowText ? (
+              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-secondary-foreground/70">
+                {block.eyebrowText}
+              </p>
+            ) : null}
+            {block.title || block.description ? (
+              <p className="text-sm font-semibold">
+                {block.title || block.description}
+                {block.title && block.description ? (
+                  <span className="mt-1 block font-normal text-secondary-foreground/80">
+                    {block.description}
+                  </span>
+                ) : null}
+              </p>
+            ) : null}
+          </div>
         </div>
 
-        {imageUrl ? (
-          <div
-            className={cn(
-              "relative aspect-4/3 overflow-hidden rounded-2xl",
-              imageOrderClassMap[orientation]
-            )}
+        {block.ctaText && block.ctaLink ? (
+          <Link
+            href={block.ctaLink}
+            className="flex shrink-0 items-center gap-2 text-sm font-bold underline underline-offset-4"
           >
-            <Image
-              src={imageUrl}
-              alt={block.title || "Banner"}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
-          </div>
+            {block.ctaText}
+            <ArrowUpRightIcon className="size-4" />
+          </Link>
         ) : null}
       </div>
     </section>

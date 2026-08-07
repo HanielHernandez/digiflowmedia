@@ -1,35 +1,49 @@
 import { ServiceCard } from "@/components/blocks/service-card";
 import type { ServiceBlock as ServiceBlockType } from "@/sanity/lib/pages";
+import { blockId } from "@/lib/utils";
 
 type ServiceBlockProps = {
   block: ServiceBlockType;
 };
 
 export function ServiceBlock({ block }: ServiceBlockProps) {
+  const services = block.services?.filter(Boolean) ?? [];
+
   return (
-    <section className="w-full bg-accent">
-      <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center gap-10 px-6 py-16">
-        <div className="flex max-w-3xl flex-col gap-4 text-center">
-          {block.eyebrowText ? (
-            <p className="text-badge text-primary uppercase tracking-[0.08em]">
-              {block.eyebrowText}
-            </p>
-          ) : null}
-          {block.title ? (
-            <h2 className="font-heading text-h2">{block.title}</h2>
-          ) : null}
+    <section
+      id={blockId(block.name)}
+      className="w-full border-y border-border bg-card px-6 py-20 lg:px-10 lg:py-28"
+    >
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-14 flex flex-col justify-between gap-5 md:flex-row md:items-end">
+          <div>
+            {block.eyebrowText ? (
+              <p className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-primary">
+                {block.eyebrowText}
+              </p>
+            ) : null}
+            {block.title ? (
+              <h2 className="max-w-xl text-4xl font-semibold tracking-[-0.06em] sm:text-6xl">
+                {block.title}
+              </h2>
+            ) : null}
+          </div>
           {block.description ? (
-            <p className="text-body-lg text-muted-foreground">
+            <p className="max-w-xs text-sm leading-6 text-muted-foreground">
               {block.description}
             </p>
           ) : null}
         </div>
 
-        {block.services?.length ? (
-          <div className="grid w-full gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {block.services.map((service) =>
+        {services.length ? (
+          <div className="grid border-t border-border md:grid-cols-3">
+            {services.map((service, index) =>
               service ? (
-                <ServiceCard key={service._id} service={service} />
+                <ServiceCard
+                  key={service._id}
+                  service={service}
+                  index={index}
+                />
               ) : null
             )}
           </div>

@@ -9,6 +9,7 @@ export const serviceBlock = defineType({
       name: "name",
       title: "Name",
       type: "string",
+      description: "Internal identifier for this block",
       validation: (rule) => rule.required(),
     }),
     defineField({
@@ -42,8 +43,8 @@ export const serviceBlock = defineType({
   ],
   preview: {
     select: {
-      title: "title",
-      subtitle: "name",
+      title: "name",
+      subtitle: "title",
     },
     prepare({ title, subtitle }) {
       return {
@@ -53,3 +54,4 @@ export const serviceBlock = defineType({
     },
   },
 });
+

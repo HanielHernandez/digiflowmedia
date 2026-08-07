@@ -1,71 +1,74 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Layers3Icon } from "lucide-react";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import type { ServiceItem } from "@/sanity/lib/pages";
 import { urlFor } from "@/sanity/lib/image";
 import { cn } from "@/lib/utils";
 
 type ServiceCardProps = {
   service: ServiceItem;
+  index?: number;
   className?: string;
 };
 
-export function ServiceCard({ service, className }: ServiceCardProps) {
+export function ServiceCard({
+  service,
+  index = 0,
+  className,
+}: ServiceCardProps) {
   const imageUrl = service.image
-    ? urlFor(service.image).width(800).height(600).url()
+    ? urlFor(service.image).width(160).height(160).url()
     : null;
   const href = service.url || (service.slug ? `/${service.slug}` : null);
+  const number = String(index + 1).padStart(2, "0");
 
-  const card = (
-    <Card
-      className={cn(
-        "h-full min-w-0 overflow-hidden  transition-all ease-in-out hover:-translate-y-5 gap-4  duration-300",
-        href && "hover:opacity-90",
-        className
-      )}
-    >
+  const content = (
+    <>
+      <div className="mb-16 flex items-center justify-between">
+        <span className="font-mono text-xs text-muted-foreground">{number}</span>
+        {imageUrl ? (
+          <div className="relative size-5 overflow-hidden rounded-sm transition-transform group-hover:rotate-12">
+            <Image
+              src={imageUrl}
+              alt=""
+              fill
+              className="object-cover"
+              sizes="20px"
+            />
+          </div>
+        ) : (
+          <Layers3Icon className="size-5 text-primary transition-transform group-hover:rotate-12" />
+        )}
+      </div>
 
-      <CardHeader className="gap-4 px-6 ">
-
-      {imageUrl ? (
-        <div className="relative size-20 rounded-md overflow-hidden">
-          <Image
-            src={imageUrl}
-            alt={service.title || service.name || "Service"}
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 33vw"
-          />
-        </div>
+      {service.title ? (
+        <h3 className="mb-3 text-2xl font-semibold tracking-[-0.04em]">
+          {service.title}
+        </h3>
       ) : null}
-        {service.title ? (
-          <CardTitle className="font-heading text-h4">{service.title}</CardTitle>
-        ) : null}
-      </CardHeader>
+
       {service.description ? (
-        <CardContent className="">
-          <CardDescription className="text-body">
-            {service.description}
-          </CardDescription>
-        </CardContent>
+        <p className="max-w-xs text-sm leading-6 text-muted-foreground">
+          {service.description}
+        </p>
       ) : null}
-    </Card>
+    </>
+  );
+
+  const sharedClassName = cn(
+    "group block border-b border-border py-8 md:border-b-0 md:border-r md:px-7 md:first:pl-0 md:last:border-r-0",
+    href && "transition-opacity hover:opacity-90",
+    className
   );
 
   if (href) {
     return (
-      <Link href={href} className="block h-full min-w-0">
-        {card}
+      <Link href={href} className={sharedClassName}>
+        {content}
       </Link>
     );
   }
 
-  return card;
+  return <article className={sharedClassName}>{content}</article>;
 }

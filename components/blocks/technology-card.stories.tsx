@@ -9,7 +9,7 @@ const meta = {
   tags: ["autodocs"],
   decorators: [
     (Story) => (
-      <div className="w-full max-w-sm">
+      <div className="flex bg-primary p-6 text-primary-foreground">
         <Story />
       </div>
     ),
@@ -23,12 +23,3 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
-
-export const WithoutImage: Story = {
-  args: {
-    technology: {
-      ...mockTechnologyItem("technology-card-text"),
-      image: undefined,
-    },
-  },
-};

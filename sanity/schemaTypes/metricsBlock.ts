@@ -17,6 +17,7 @@ export const metricsBlock = defineType({
       name: "name",
       title: "Name",
       type: "string",
+      description: "Internal identifier for this block",
       validation: (rule) => rule.required(),
     }),
     defineField({

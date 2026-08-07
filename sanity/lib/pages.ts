@@ -7,6 +7,7 @@ import { PAGE_BY_SLUG_QUERY } from "./queries";
 export type HeroSectionBlock = {
   _key: string;
   _type: "heroSection";
+  name?: string;
   title?: string;
   subtitle?: string;
   primaryButtonText?: string;
@@ -38,6 +39,7 @@ export type ServiceBlock = {
 export type AboutUsBlock = {
   _key: string;
   _type: "aboutUsBlock";
+  name?: string;
   eyebrowText?: string;
   title?: string;
   content?: PortableTextBlock[];
@@ -74,6 +76,7 @@ export type BannerOrientation =
 export type BannerBlock = {
   _key: string;
   _type: "bannerBlock";
+  name?: string;
   eyebrowText?: string;
   title?: string;
   description?: string;
@@ -93,6 +96,7 @@ export type TechnologyItem = {
 export type TechnologiesBlock = {
   _key: string;
   _type: "technologiesBlock";
+  name?: string;
   eyebrowText?: string;
   title?: string;
   subtitle?: string;
@@ -102,6 +106,7 @@ export type TechnologiesBlock = {
 export type ContactFormBlock = {
   _key: string;
   _type: "contactFormBlock";
+  name?: string;
   eyebrowText?: string;
   title?: string;
   subtitle?: string;
@@ -116,6 +121,7 @@ export type FaqItem = {
 export type FaqsBlock = {
   _key: string;
   _type: "faqsBlock";
+  name?: string;
   eyebrowText?: string;
   title?: string;
   subtitle?: string;

@@ -6,6 +6,13 @@ export const faqsBlock = defineType({
   type: "object",
   fields: [
     defineField({
+      name: "name",
+      title: "Name",
+      type: "string",
+      description: "Internal identifier for this block",
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: "eyebrowText",
       title: "Eyebrow Text",
       type: "string",
@@ -36,8 +43,8 @@ export const faqsBlock = defineType({
   ],
   preview: {
     select: {
-      title: "title",
-      subtitle: "eyebrowText",
+      title: "name",
+      subtitle: "title",
       faqs: "faqs",
     },
     prepare({ title, subtitle, faqs }) {

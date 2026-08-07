@@ -1,8 +1,8 @@
 "use client";
 
 import { useActionState } from "react";
+import { ArrowUpRightIcon, CheckIcon } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
 import {
   sendContactEmail,
   type ContactFormState,
@@ -15,9 +15,8 @@ const initialState: ContactFormState = {
 };
 
 const fieldClassName = cn(
-  "w-full rounded-xl border border-border bg-background px-4 text-body text-foreground",
-  "placeholder:text-muted-foreground outline-none transition-colors",
-  "focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50",
+  "border px-3 rounded-sm py-2 border-background/30 bg-transparent py-3 text-base text-background outline-none transition-colors",
+  "placeholder:text-background/30 focus:border-brand-pink",
   "disabled:cursor-not-allowed disabled:opacity-50"
 );
 
@@ -28,65 +27,71 @@ export function ContactForm() {
   );
 
   return (
-    <form action={formAction} className="flex w-full flex-col gap-5">
-      <div className="flex flex-col gap-2">
-        <label htmlFor="email" className="text-body-sm font-medium">
-          Email
+    <form action={formAction} className="flex flex-col gap-5">
+      <div className="grid gap-5 sm:grid-cols-2">
+        <label className="flex flex-col gap-2 text-xs font-medium text-background/60">
+          Work email
+          <input
+            id="email"
+            name="email"
+            type="email"
+            required
+            autoComplete="email"
+            placeholder="jane@company.com"
+            disabled={pending}
+            className={fieldClassName}
+          />
         </label>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          required
-          autoComplete="email"
-          placeholder="you@company.com"
-          disabled={pending}
-          className={cn(fieldClassName, "h-12")}
-        />
-      </div>
 
-      <div className="flex flex-col gap-2">
-        <label htmlFor="about" className="text-body-sm font-medium">
+        <label className="flex flex-col gap-2 text-xs font-medium text-background/60">
           About
+          <input
+            id="about"
+            name="about"
+            type="text"
+            required
+            placeholder="What is this about?"
+            disabled={pending}
+            className={fieldClassName}
+          />
         </label>
-        <input
-          id="about"
-          name="about"
-          type="text"
-          required
-          placeholder="What is this about?"
-          disabled={pending}
-          className={cn(fieldClassName, "h-12")}
-        />
       </div>
 
-      <div className="flex flex-col gap-2">
-        <label htmlFor="description" className="text-body-sm font-medium">
-          Description
-        </label>
+      <label className="flex flex-col gap-2 text-xs font-medium text-background/60">
+        What can we help with?
         <textarea
           id="description"
           name="description"
           required
-          rows={5}
-          placeholder="Tell us more about your project..."
+          rows={4}
+          placeholder="A new brand, a digital product, a big shift..."
           disabled={pending}
-          className={cn(fieldClassName, "min-h-32 resize-y py-4")}
+          className={cn(fieldClassName, "resize-none")}
         />
-      </div>
+      </label>
 
-      <Button type="submit" disabled={pending} className="w-full sm:w-auto">
-        {pending ? "Sending..." : "Send message"}
-      </Button>
+      <button
+        type="submit"
+        disabled={pending}
+        className="mt-4 flex w-fit items-center gap-3 rounded-full bg-brand-pink px-6 py-3 text-sm font-bold text-foreground transition-transform hover:-translate-y-1 disabled:pointer-events-none disabled:opacity-50"
+      >
+        {pending ? (
+          "Sending..."
+        ) : state.ok ? (
+          <>
+            <CheckIcon className="size-4" />
+            Message received
+          </>
+        ) : (
+          <>
+            Send inquiry
+            <ArrowUpRightIcon className="size-4" />
+          </>
+        )}
+      </button>
 
-      {state.message ? (
-        <p
-          className={cn(
-            "text-body-sm",
-            state.ok ? "text-success" : "text-destructive"
-          )}
-          role="status"
-        >
+      {state.message && !state.ok ? (
+        <p className="text-sm text-brand-pink" role="status">
           {state.message}
         </p>
       ) : null}

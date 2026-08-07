@@ -9,13 +9,14 @@ const meta = {
   tags: ["autodocs"],
   decorators: [
     (Story) => (
-      <div className="w-full max-w-sm">
+      <div className="w-full max-w-sm border-t border-border">
         <Story />
       </div>
     ),
   ],
   args: {
     service: mockServiceItem("service-card"),
+    index: 0,
   },
 } satisfies Meta<typeof ServiceCard>;
 

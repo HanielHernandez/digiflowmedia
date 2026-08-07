@@ -58,6 +58,7 @@ export function mockPortableText(text: string): PortableTextBlock[] {
 export const mockHeroBlock: HeroSectionBlock = {
   _key: "hero-1",
   _type: "heroSection",
+  name: "Hero",
   title: lorem.title,
   subtitle: lorem.paragraph,
   primaryButtonText: lorem.cta,
@@ -93,6 +94,7 @@ export const mockServiceBlock: ServiceBlock = {
 export const mockAboutUsBlock: AboutUsBlock = {
   _key: "about-1",
   _type: "aboutUsBlock",
+  name: "About",
   eyebrowText: lorem.eyebrow,
   title: lorem.title,
   content: mockPortableText(lorem.paragraphLong),
@@ -102,7 +104,7 @@ export const mockAboutUsBlock: AboutUsBlock = {
 export const mockMetricsBlock: MetricsBlock = {
   _key: "metrics-1",
   _type: "metricsBlock",
-  name: lorem.title,
+  name: "Metrics",
   metrics: [
     {
       _key: "m1",
@@ -134,6 +136,7 @@ export const mockMetricsBlock: MetricsBlock = {
 export const mockBannerBlock: BannerBlock = {
   _key: "banner-1",
   _type: "bannerBlock",
+  name: "Banner",
   eyebrowText: lorem.eyebrow,
   title: lorem.title,
   description: lorem.paragraph,
@@ -153,6 +156,7 @@ export const mockTechnologyItem = (id: string): TechnologyItem => ({
 export const mockTechnologiesBlock: TechnologiesBlock = {
   _key: "tech-1",
   _type: "technologiesBlock",
+  name: "Technologies",
   eyebrowText: lorem.eyebrow,
   title: lorem.title,
   subtitle: lorem.paragraph,
@@ -167,6 +171,7 @@ export const mockTechnologiesBlock: TechnologiesBlock = {
 export const mockContactFormBlock: ContactFormBlock = {
   _key: "contact-1",
   _type: "contactFormBlock",
+  name: "Contact",
   eyebrowText: lorem.eyebrow,
   title: lorem.title,
   subtitle: lorem.paragraph,
@@ -181,6 +186,7 @@ export const mockFaqItem = (id: string, question?: string): FaqItem => ({
 export const mockFaqsBlock: FaqsBlock = {
   _key: "faqs-1",
   _type: "faqsBlock",
+  name: "FAQs",
   eyebrowText: lorem.eyebrow,
   title: lorem.title,
   subtitle: lorem.paragraph,

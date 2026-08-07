@@ -8,6 +8,13 @@ export const bannerBlock = defineType({
   type: "object",
   fields: [
     field({
+      name: "name",
+      title: "Name",
+      type: "string",
+      description: "Internal identifier for this block",
+      validation: (rule) => rule.required(),
+    }),
+    field({
       name: "eyebrowText",
       title: "Eyebrow Text",
       type: "string",
@@ -66,14 +73,14 @@ export const bannerBlock = defineType({
   ],
   preview: {
     select: {
-      title: "title",
-      subtitle: "orientation",
+      title: "name",
+      subtitle: "title",
       media: "image",
     },
     prepare({ title, subtitle, media }) {
       return {
         title: title || "Banner Block",
-        subtitle: subtitle,
+        subtitle,
         media,
       };
     },

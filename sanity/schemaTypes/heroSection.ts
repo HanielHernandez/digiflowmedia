@@ -6,6 +6,13 @@ export const heroSection = defineType({
   type: "object",
   fields: [
     defineField({
+      name: "name",
+      title: "Name",
+      type: "string",
+      description: "Internal identifier for this block",
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: "title",
       title: "Title",
       type: "string",
@@ -50,13 +57,13 @@ export const heroSection = defineType({
   ],
   preview: {
     select: {
-      title: "title",
-      subtitle: "subtitle",
+      title: "name",
+      subtitle: "title",
     },
     prepare({ title, subtitle }) {
       return {
         title: title || "Hero Section",
-        subtitle: subtitle,
+        subtitle,
       };
     },
   },

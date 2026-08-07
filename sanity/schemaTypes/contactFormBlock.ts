@@ -8,6 +8,13 @@ export const contactFormBlock = defineType({
   type: "object",
   fields: [
     field({
+      name: "name",
+      title: "Name",
+      type: "string",
+      description: "Internal identifier for this block",
+      validation: (rule) => rule.required(),
+    }),
+    field({
       name: "eyebrowText",
       title: "Eyebrow Text",
       type: "string",
@@ -27,8 +34,8 @@ export const contactFormBlock = defineType({
   ],
   preview: {
     select: {
-      title: "title",
-      subtitle: "eyebrowText",
+      title: "name",
+      subtitle: "title",
     },
     prepare({ title, subtitle }) {
       return {
