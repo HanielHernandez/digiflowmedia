@@ -35,7 +35,7 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
-    layout: "centered",
+    layout: "padded",
     backgrounds: {
       options: {
         light: { name: "Light", value: "#ffffff" },

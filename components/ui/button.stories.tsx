@@ -12,6 +12,8 @@ const meta = {
       options: [
         "default",
         "outline",
+        "outline-primary",
+        "outline-secondary",
         "secondary",
         "ghost",
         "destructive",
@@ -51,6 +53,18 @@ export const Default: Story = {};
 export const Outline: Story = {
   args: {
     variant: "outline",
+  },
+};
+
+export const OutlinePrimary: Story = {
+  args: {
+    variant: "outline-primary",
+  },
+};
+
+export const OutlineSecondary: Story = {
+  args: {
+    variant: "outline-secondary",
   },
 };
 

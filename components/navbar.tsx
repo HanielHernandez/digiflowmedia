@@ -1,14 +1,21 @@
 import Link from "next/link";
+import {
+  ArrowRightIcon,
+  BriefcaseIcon,
+  FolderKanbanIcon,
+  MailIcon,
+  UsersIcon,
+} from "lucide-react";
 
 import { Logo } from "@/components/logo";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { href: "/services", label: "Services" },
-  { href: "/work", label: "Work" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
+  { href: "/services", label: "Services", icon: BriefcaseIcon },
+  { href: "/work", label: "Work", icon: FolderKanbanIcon },
+  { href: "/about", label: "About", icon: UsersIcon },
+  { href: "/contact", label: "Contact", icon: MailIcon },
 ];
 
 export function Navbar() {
@@ -20,15 +27,20 @@ export function Navbar() {
         </Link>
 
         <nav aria-label="Primary" className="hidden items-center gap-8 md:flex">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-body-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const Icon = link.icon;
+
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="inline-flex items-center gap-2 text-body-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              >
+                <Icon className="size-4" />
+                {link.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <Link
@@ -39,6 +51,7 @@ export function Navbar() {
           )}
         >
           Get started
+          <ArrowRightIcon data-icon="inline-end" />
         </Link>
       </div>
     </header>

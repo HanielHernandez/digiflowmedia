@@ -11,7 +11,7 @@ const footerLinks = [
 
 export function Footer() {
   return (
-    <footer className="mt-auto border-t border-border bg-surface">
+    <footer className="mt-auto border-t border-border bg-surface shadow-[0_-4px_12px_rgb(0_0_0_/_0.05)]">
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-10 px-6 py-16">
         <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
           <div className="flex max-w-sm flex-col gap-4">

@@ -11,10 +11,22 @@ const config: StorybookConfig = {
   staticDirs: ["../public"],
   async viteFinal(config) {
     config.resolve ??= {};
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      "@": path.resolve(dirname, ".."),
-    };
+    config.resolve.alias = [
+      {
+        find: "@/sanity/lib/image",
+        replacement: path.resolve(dirname, "./mocks/sanity-image.ts"),
+      },
+      {
+        find: "@",
+        replacement: path.resolve(dirname, ".."),
+      },
+      ...(Array.isArray(config.resolve.alias)
+        ? config.resolve.alias
+        : Object.entries(config.resolve.alias ?? {}).map(([find, replacement]) => ({
+            find,
+            replacement: String(replacement),
+          }))),
+    ];
     return config;
   },
 };

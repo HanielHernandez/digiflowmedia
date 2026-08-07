@@ -3,6 +3,8 @@ import { type SchemaTypeDefinition } from "sanity";
 import { aboutUsBlock } from "./aboutUsBlock";
 import { bannerBlock } from "./bannerBlock";
 import { contactFormBlock } from "./contactFormBlock";
+import { faqs } from "./faqs";
+import { faqsBlock } from "./faqsBlock";
 import { heroSection } from "./heroSection";
 import { metricsBlock } from "./metricsBlock";
 import { page } from "./page";
@@ -16,6 +18,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     page,
     service,
     technology,
+    faqs,
     heroSection,
     serviceBlock,
     aboutUsBlock,
@@ -23,5 +26,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     bannerBlock,
     technologiesBlock,
     contactFormBlock,
+    faqsBlock,
   ],
 };

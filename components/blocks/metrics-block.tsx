@@ -26,40 +26,42 @@ export function MetricsBlock({ block }: MetricsBlockProps) {
   if (!block.metrics?.length) return null;
 
   return (
-    <section className="flex w-full flex-col gap-8 py-16">
-      {block.name ? (
-        <h2 className="font-heading text-h2 text-center">{block.name}</h2>
-      ) : null}
+    <section className="w-full bg-secondary">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-6 py-16">
+        {block.name ? (
+          <h2 className="font-heading text-h2 text-center">{block.name}</h2>
+        ) : null}
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {block.metrics.map((metric) => {
-          const color = metric.color || "purple";
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {block.metrics.map((metric) => {
+            const color = metric.color || "purple";
 
-          return (
-            <Card
-              key={metric._key}
-              className="min-w-0 items-center bg-brand-blue overflow-hidden text-center"
-            >
-              <CardHeader className="w-full min-w-0 items-center px-6">
-                <h1
-                  className={cn(
-                    "font-heading    text-h1 w-full max-w-full text-center wrap-break-word",
-                    colorClassMap[color]
-                  )}
-                >
-                  {metric.title}
-                </h1>
-              </CardHeader>
-              {metric.subtitle ? (
-                <CardContent className="w-full min-w-0">
-                  <CardDescription className="text-body text-primary-foreground text-center wrap-break-word">
-                    {metric.subtitle}
-                  </CardDescription>
-                </CardContent>
-              ) : null}
-            </Card>
-          );
-        })}
+            return (
+              <Card
+                key={metric._key}
+                className="min-w-0 items-center overflow-hidden border-0 bg-brand-blue text-center shadow-brand-blue/50 transition-all duration-300 ease-in-out hover:shadow-brand-blue"
+              >
+                <CardHeader className="w-full min-w-0 items-center px-6">
+                  <h1
+                    className={cn(
+                      "font-heading text-h1 w-full max-w-full text-center wrap-break-word",
+                      colorClassMap[color]
+                    )}
+                  >
+                    {metric.title}
+                  </h1>
+                </CardHeader>
+                {metric.subtitle ? (
+                  <CardContent className="w-full min-w-0">
+                    <CardDescription className="text-body text-center text-primary-foreground wrap-break-word">
+                      {metric.subtitle}
+                    </CardDescription>
+                  </CardContent>
+                ) : null}
+              </Card>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

@@ -43,6 +43,11 @@ export const PAGE_BY_SLUG_QUERY = defineQuery(`
         name,
         description,
         image
+      },
+      faqs[]->{
+        _id,
+        question,
+        answer
       }
     }
   }

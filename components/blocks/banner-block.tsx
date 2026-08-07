@@ -41,57 +41,59 @@ export function BannerBlock({ block }: BannerBlockProps) {
     : null;
 
   return (
-    <section
-      className={cn(
-        "grid w-full items-center gap-10 py-16 md:gap-16",
-        layoutClassMap[orientation]
-      )}
-    >
+    <section className="w-full">
       <div
         className={cn(
-          "flex flex-col items-start gap-4",
-          contentOrderClassMap[orientation]
+          "mx-auto grid w-full max-w-7xl items-center gap-10 px-6 py-16 md:gap-16",
+          layoutClassMap[orientation]
         )}
       >
-        {block.eyebrowText ? (
-          <p className="text-badge text-primary uppercase tracking-[0.08em]">
-            {block.eyebrowText}
-          </p>
-        ) : null}
-        {block.title ? (
-          <h2 className="font-heading text-h2 max-w-2xl">{block.title}</h2>
-        ) : null}
-        {block.description ? (
-          <p className="text-body-lg text-muted-foreground max-w-2xl">
-            {block.description}
-          </p>
-        ) : null}
-        {block.ctaText && block.ctaLink ? (
-          <Link
-            href={block.ctaLink}
-            className={cn(buttonVariants({ size: "default" }), "mt-2")}
-          >
-            {block.ctaText}
-          </Link>
-        ) : null}
-      </div>
-
-      {imageUrl ? (
         <div
           className={cn(
-            "relative aspect-4/3 overflow-hidden rounded-2xl",
-            imageOrderClassMap[orientation]
+            "flex flex-col items-start gap-4",
+            contentOrderClassMap[orientation]
           )}
         >
-          <Image
-            src={imageUrl}
-            alt={block.title || "Banner"}
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 50vw"
-          />
+          {block.eyebrowText ? (
+            <p className="text-badge text-primary uppercase tracking-[0.08em]">
+              {block.eyebrowText}
+            </p>
+          ) : null}
+          {block.title ? (
+            <h2 className="font-heading text-h2 max-w-2xl">{block.title}</h2>
+          ) : null}
+          {block.description ? (
+            <p className="text-body-lg text-muted-foreground max-w-2xl">
+              {block.description}
+            </p>
+          ) : null}
+          {block.ctaText && block.ctaLink ? (
+            <Link
+              href={block.ctaLink}
+              className={cn(buttonVariants({ size: "default" }), "mt-2")}
+            >
+              {block.ctaText}
+            </Link>
+          ) : null}
         </div>
-      ) : null}
+
+        {imageUrl ? (
+          <div
+            className={cn(
+              "relative aspect-4/3 overflow-hidden rounded-2xl",
+              imageOrderClassMap[orientation]
+            )}
+          >
+            <Image
+              src={imageUrl}
+              alt={block.title || "Banner"}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+        ) : null}
+      </div>
     </section>
   );
 }

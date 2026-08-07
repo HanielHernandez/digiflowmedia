@@ -107,6 +107,21 @@ export type ContactFormBlock = {
   subtitle?: string;
 };
 
+export type FaqItem = {
+  _id: string;
+  question?: string;
+  answer?: PortableTextBlock[];
+};
+
+export type FaqsBlock = {
+  _key: string;
+  _type: "faqsBlock";
+  eyebrowText?: string;
+  title?: string;
+  subtitle?: string;
+  faqs?: FaqItem[];
+};
+
 export type PageBlock =
   | HeroSectionBlock
   | ServiceBlock
@@ -114,7 +129,8 @@ export type PageBlock =
   | MetricsBlock
   | BannerBlock
   | TechnologiesBlock
-  | ContactFormBlock;
+  | ContactFormBlock
+  | FaqsBlock;
 
 export type SanityPage = {
   _id: string;

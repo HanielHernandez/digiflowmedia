@@ -9,7 +9,7 @@ export async function renderSanityPage(slug: string) {
   if (!page) notFound();
 
   return (
-    <main className="mx-auto flex w-full max-w-7xl flex-1 flex-col px-6">
+    <main className="flex w-full flex-1 flex-col">
       <PageBlocks blocks={page.blocks} />
     </main>
   );
