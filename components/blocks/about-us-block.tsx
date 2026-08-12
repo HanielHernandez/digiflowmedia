@@ -3,7 +3,6 @@ import { PortableText } from "next-sanity";
 
 import type { AboutUsBlock as AboutUsBlockType } from "@/sanity/lib/pages";
 import { urlFor } from "@/sanity/lib/image";
-import { blockId } from "@/lib/utils";
 
 type AboutUsBlockProps = {
   block: AboutUsBlockType;
@@ -23,7 +22,7 @@ export function AboutUsBlock({ block }: AboutUsBlockProps) {
 
   return (
     <section
-      id={blockId(block.name)}
+      id="about"
       className="mx-auto grid w-full max-w-7xl gap-14 px-6 py-20 lg:grid-cols-[0.7fr_1.3fr] lg:px-10 lg:py-32"
     >
       <div>

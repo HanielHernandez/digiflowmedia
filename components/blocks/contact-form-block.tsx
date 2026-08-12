@@ -1,6 +1,5 @@
 import { ContactForm } from "@/components/blocks/contact-form";
 import type { ContactFormBlock as ContactFormBlockType } from "@/sanity/lib/pages";
-import { blockId } from "@/lib/utils";
 
 type ContactFormBlockProps = {
   block: ContactFormBlockType;
@@ -9,7 +8,7 @@ type ContactFormBlockProps = {
 export function ContactFormBlock({ block }: ContactFormBlockProps) {
   return (
     <section
-      id={blockId(block.name)}
+      id="contact"
       className="w-full bg-foreground px-6 py-20 text-background lg:px-10 lg:py-28"
     >
       <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[0.9fr_1.1fr]">

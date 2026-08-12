@@ -25,21 +25,20 @@ export function ServiceCard({
 
   const content = (
     <>
-      <div className="mb-16 flex items-center justify-between">
-        <span className="font-mono text-xs text-muted-foreground">{number}</span>
+      <div className="mb-16 flex items-start justify-between">
         {imageUrl ? (
-          <div className="relative size-5 overflow-hidden rounded-sm transition-transform group-hover:rotate-12">
+          <div className="relative size-6 overflow-hidden transition-transform group-hover:rotate-12">
             <Image
               src={imageUrl}
-              alt=""
+              alt={service.title || service.name || "Service"}
               fill
-              className="object-cover"
-              sizes="20px"
+              sizes="24px"
             />
           </div>
         ) : (
-          <Layers3Icon className="size-5 text-primary transition-transform group-hover:rotate-12" />
+          <Layers3Icon className="size-6 text-primary transition-transform group-hover:rotate-12" />
         )}
+        <span className="font-mono text-xs text-muted-foreground">{number}</span>
       </div>
 
       {service.title ? (

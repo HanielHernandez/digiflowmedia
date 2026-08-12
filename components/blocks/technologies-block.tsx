@@ -1,6 +1,5 @@
 import { TechnologyCard } from "@/components/blocks/technology-card";
 import type { TechnologiesBlock as TechnologiesBlockType } from "@/sanity/lib/pages";
-import { blockId } from "@/lib/utils";
 
 type TechnologiesBlockProps = {
   block: TechnologiesBlockType;
@@ -11,7 +10,7 @@ export function TechnologiesBlock({ block }: TechnologiesBlockProps) {
 
   return (
     <section
-      id={blockId(block.name)}
+      id="work"
       className="w-full bg-primary px-6 py-16 text-primary-foreground lg:px-10 lg:py-20"
     >
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">

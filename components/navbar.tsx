@@ -7,10 +7,10 @@ import { ArrowUpRightIcon, MenuIcon, XIcon } from "lucide-react";
 import { Logo } from "@/components/logo";
 
 const navLinks = [
-  { href: "/services", label: "Services" },
-  { href: "/work", label: "Work" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
+  { href: "/#services", label: "Services" },
+  { href: "/#work", label: "Work" },
+  { href: "/#about", label: "About" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export function Navbar() {
@@ -36,7 +36,7 @@ export function Navbar() {
         </div>
 
         <Link
-          href="/contact"
+          href="/#contact"
           className="hidden items-center gap-2 rounded-full bg-foreground px-4 py-2 text-sm font-semibold text-background transition-transform hover:-translate-y-0.5 md:flex"
         >
           Start a project
@@ -66,7 +66,7 @@ export function Navbar() {
             </Link>
           ))}
           <Link
-            href="/contact"
+            href="/#contact"
             onClick={() => setMenuOpen(false)}
             className="font-semibold text-primary"
           >

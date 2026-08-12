@@ -1,6 +1,5 @@
 import { ServiceCard } from "@/components/blocks/service-card";
 import type { ServiceBlock as ServiceBlockType } from "@/sanity/lib/pages";
-import { blockId } from "@/lib/utils";
 
 type ServiceBlockProps = {
   block: ServiceBlockType;
@@ -11,7 +10,7 @@ export function ServiceBlock({ block }: ServiceBlockProps) {
 
   return (
     <section
-      id={blockId(block.name)}
+      id="services"
       className="w-full border-y border-border bg-card px-6 py-20 lg:px-10 lg:py-28"
     >
       <div className="mx-auto max-w-7xl">

@@ -42,7 +42,7 @@ export function MetricsBlock({ block }: MetricsBlockProps) {
           const color = metric.color || "purple";
 
           return (
-            <div key={metric._key}>
+            <div key={metric._key} className="text-center">
               {metric.title ? (
                 <p
                   className={cn(
