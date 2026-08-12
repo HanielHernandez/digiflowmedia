@@ -13,8 +13,13 @@ const navLinks = [
   { href: "/#contact", label: "Contact" },
 ];
 
-export function Navbar() {
+type NavbarProps = {
+  contactEmail?: string;
+};
+
+export function Navbar({ contactEmail }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const mailtoHref = contactEmail ? `mailto:${contactEmail}` : "/#contact";
 
   return (
     <header className="w-full">
@@ -35,13 +40,13 @@ export function Navbar() {
           ))}
         </div>
 
-        <Link
-          href="/#contact"
+        <a
+          href={mailtoHref}
           className="hidden items-center gap-2 rounded-full bg-foreground px-4 py-2 text-sm font-semibold text-background transition-transform hover:-translate-y-0.5 md:flex"
         >
           Start a project
           <ArrowUpRightIcon className="size-4" />
-        </Link>
+        </a>
 
         <button
           type="button"
@@ -65,14 +70,14 @@ export function Navbar() {
               {link.label}
             </Link>
           ))}
-          <Link
-            href="/#contact"
+          <a
+            href={mailtoHref}
             onClick={() => setMenuOpen(false)}
             className="font-semibold text-primary"
           >
             Start a project{" "}
             <ArrowUpRightIcon className="inline size-4" />
-          </Link>
+          </a>
         </div>
       ) : null}
     </header>

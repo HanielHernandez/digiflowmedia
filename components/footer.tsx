@@ -4,8 +4,10 @@ import { ArrowUpRightIcon } from "lucide-react";
 import { Logo } from "@/components/logo";
 
 const footerLinks = [
-  { href: "/services", label: "Services" },
-  { href: "/contact", label: "Contact" },
+  { href: "/#services", label: "Services" },
+  { href: "/#work", label: "Work" },
+  { href: "/#about", label: "About" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export function Footer() {
@@ -36,7 +38,7 @@ export function Footer() {
                 {link.label}
               </Link>
             ))}
-            <Link href="/" className="hover:text-background">
+            <Link href="/#" className="hover:text-background">
               Back to top <ArrowUpRightIcon className="inline size-3" />
             </Link>
           </div>
