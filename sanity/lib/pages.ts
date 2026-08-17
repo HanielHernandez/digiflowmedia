@@ -4,6 +4,15 @@ import type { SanityImageSource } from "@sanity/image-url";
 import { client } from "./client";
 import { PAGE_BY_SLUG_QUERY } from "./queries";
 
+export type HeroFeaturePanel = {
+  label?: string;
+  description?: PortableTextBlock[];
+  title?: string;
+  titleHighlight?: string;
+  footer?: string;
+  url?: string;
+};
+
 export type HeroSectionBlock = {
   _key: string;
   _type: "heroSection";
@@ -14,13 +23,14 @@ export type HeroSectionBlock = {
   primaryUrl?: string;
   secondaryButtonText?: string;
   secondaryUrl?: string;
+  panel?: HeroFeaturePanel;
 };
 
 export type ServiceItem = {
   _id: string;
   name?: string;
   title?: string;
-  description?: string;
+  description?: PortableTextBlock[];
   url?: string;
   slug?: string;
   image?: SanityImageSource;
@@ -79,7 +89,7 @@ export type BannerBlock = {
   name?: string;
   eyebrowText?: string;
   title?: string;
-  description?: string;
+  description?: PortableTextBlock[];
   ctaText?: string;
   ctaLink?: string;
   image?: SanityImageSource;

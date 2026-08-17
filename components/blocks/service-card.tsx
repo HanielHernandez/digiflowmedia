@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Layers3Icon } from "lucide-react";
+import { PortableText } from "next-sanity";
 
 import type { ServiceItem } from "@/sanity/lib/pages";
 import { urlFor } from "@/sanity/lib/image";
@@ -47,10 +48,10 @@ export function ServiceCard({
         </h3>
       ) : null}
 
-      {service.description ? (
-        <p className="max-w-xs text-sm leading-6 text-muted-foreground">
-          {service.description}
-        </p>
+      {service.description?.length ? (
+        <div className="max-w-xs space-y-3 text-sm leading-6 text-muted-foreground [&_a]:text-primary [&_a]:underline [&_li]:ml-5 [&_ol]:list-decimal [&_strong]:font-semibold [&_strong]:text-foreground [&_ul]:list-disc">
+          <PortableText value={service.description} />
+        </div>
       ) : null}
     </>
   );

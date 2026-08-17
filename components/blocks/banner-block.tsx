@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRightIcon, SparklesIcon } from "lucide-react";
+import { PortableText } from "next-sanity";
 
 import type { BannerBlock as BannerBlockType } from "@/sanity/lib/pages";
 import { urlFor } from "@/sanity/lib/image";
@@ -44,15 +45,13 @@ export function BannerBlock({ block }: BannerBlockProps) {
                 {block.eyebrowText}
               </p>
             ) : null}
-            {block.title || block.description ? (
-              <p className="text-sm font-semibold">
-                {block.title || block.description}
-                {block.title && block.description ? (
-                  <span className="mt-1 block font-normal text-secondary-foreground/80">
-                    {block.description}
-                  </span>
-                ) : null}
-              </p>
+            {block.title ? (
+              <p className="text-sm font-semibold">{block.title}</p>
+            ) : null}
+            {block.description?.length ? (
+              <div className="mt-1 space-y-2 text-sm font-normal text-secondary-foreground/80 [&_a]:underline [&_li]:ml-5 [&_ol]:list-decimal [&_strong]:font-semibold [&_strong]:text-secondary-foreground [&_ul]:list-disc">
+                <PortableText value={block.description} />
+              </div>
             ) : null}
           </div>
         </div>

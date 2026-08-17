@@ -5,6 +5,7 @@ import {
   Globe2Icon,
   MoveUpRightIcon,
 } from "lucide-react";
+import { PortableText } from "next-sanity";
 
 import type { HeroSectionBlock } from "@/sanity/lib/pages";
 import { blockId } from "@/lib/utils";
@@ -14,6 +15,15 @@ type HeroSectionProps = {
 };
 
 export function HeroSection({ block }: HeroSectionProps) {
+  const panel = block.panel;
+  const panelUrl = panel?.url || block.primaryUrl;
+  const hasPanelContent =
+    panel?.label ||
+    panel?.description?.length ||
+    panel?.title ||
+    panel?.titleHighlight ||
+    panel?.footer;
+
   return (
     <section
       id={blockId(block.name)}
@@ -70,53 +80,71 @@ export function HeroSection({ block }: HeroSectionProps) {
         </div>
       </div>
 
-      <div className="relative mt-20 min-h-[360px] overflow-hidden rounded-[2rem] bg-foreground p-6 text-background sm:min-h-[490px] sm:p-10 lg:mt-28">
-        <div
-          className="absolute inset-0 opacity-50"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 1px 1px, #e17cf6 1px, transparent 0)",
-            backgroundSize: "22px 22px",
-          }}
-        />
-        <div className="relative flex h-full min-h-[310px] flex-col justify-between sm:min-h-[410px]">
-          <div className="flex items-start justify-between">
-            <span className="font-mono text-xs uppercase tracking-[0.2em] text-brand-pink">
-              {block.name ? `Signal / ${block.name}` : "Signal / 001"}
-            </span>
-            <Globe2Icon className="size-6 text-brand-pink" />
-          </div>
+      {hasPanelContent ? (
+        <div className="relative mt-20 min-h-[360px] overflow-hidden rounded-[2rem] bg-foreground p-6 text-background sm:min-h-[490px] sm:p-10 lg:mt-28">
+          <div
+            className="absolute inset-0 opacity-50"
+            style={{
+              backgroundImage:
+                "radial-gradient(circle at 1px 1px, #e17cf6 1px, transparent 0)",
+              backgroundSize: "22px 22px",
+            }}
+          />
+          <div className="relative flex h-full min-h-[310px] flex-col justify-between sm:min-h-[410px]">
+            <div className="flex items-start justify-between">
+              {panel?.label ? (
+                <span className="font-mono text-xs uppercase tracking-[0.2em] text-brand-pink">
+                  {panel.label}
+                </span>
+              ) : (
+                <span />
+              )}
+              <Globe2Icon className="size-6 text-brand-pink" />
+            </div>
 
-          <div className="max-w-2xl">
-            {block.subtitle ? (
-              <p className="mb-5 max-w-lg text-sm leading-6 text-background/60">
-                {block.subtitle}
-              </p>
-            ) : null}
-            <div className="text-5xl font-semibold tracking-[-0.06em] sm:text-7xl">
-              Good work
-              <br />
-              <span className="text-brand-pink">travels fast.</span>
+            <div className="max-w-2xl">
+              {panel?.description?.length ? (
+                <div className="mb-5 max-w-lg space-y-3 text-sm leading-6 text-background/60 [&_a]:text-brand-pink [&_a]:underline [&_li]:ml-5 [&_ol]:list-decimal [&_strong]:font-semibold [&_strong]:text-background [&_ul]:list-disc">
+                  <PortableText value={panel.description} />
+                </div>
+              ) : null}
+              {panel?.title || panel?.titleHighlight ? (
+                <div className="text-5xl font-semibold tracking-[-0.06em] sm:text-7xl">
+                  {panel?.title ? (
+                    <>
+                      {panel.title}
+                      {panel?.titleHighlight ? <br /> : null}
+                    </>
+                  ) : null}
+                  {panel?.titleHighlight ? (
+                    <span className="text-brand-pink">{panel.titleHighlight}</span>
+                  ) : null}
+                </div>
+              ) : null}
+            </div>
+
+            <div className="flex items-end justify-between">
+              {panel?.footer ? (
+                <span className="font-mono text-xs uppercase tracking-[0.16em] text-background/50">
+                  {panel.footer}
+                </span>
+              ) : (
+                <span />
+              )}
+              {panelUrl ? (
+                <Link
+                  href={panelUrl}
+                  className="text-brand-pink transition-transform hover:rotate-12"
+                >
+                  <MoveUpRightIcon className="size-7" />
+                </Link>
+              ) : (
+                <MoveUpRightIcon className="size-7 text-brand-pink" />
+              )}
             </div>
           </div>
-
-          <div className="flex items-end justify-between">
-            <span className="font-mono text-xs uppercase tracking-[0.16em] text-background/50">
-              Strategy · Design · Technology
-            </span>
-            {block.primaryUrl ? (
-              <Link
-                href={block.primaryUrl}
-                className="text-brand-pink transition-transform hover:rotate-12"
-              >
-                <MoveUpRightIcon className="size-7" />
-              </Link>
-            ) : (
-              <MoveUpRightIcon className="size-7 text-brand-pink" />
-            )}
-          </div>
         </div>
-      </div>
+      ) : null}
     </section>
   );
 }

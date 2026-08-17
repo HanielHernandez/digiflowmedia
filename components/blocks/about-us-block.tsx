@@ -46,7 +46,7 @@ export function AboutUsBlock({ block }: AboutUsBlockProps) {
         ) : null}
 
         {block.content?.length ? (
-          <div className="mt-12 grid gap-8 border-t border-border pt-8 sm:grid-cols-2 [&_a]:text-primary [&_a]:underline [&_blockquote]:border-l-4 [&_blockquote]:border-primary [&_blockquote]:pl-4 [&_blockquote]:italic [&_li]:ml-5 [&_ol]:list-decimal [&_p]:text-sm [&_p]:leading-6 [&_p]:text-muted-foreground [&_strong]:font-semibold [&_strong]:text-foreground [&_ul]:list-disc">
+          <div className="mt-12  border-t border-border pt-8 sm:grid-cols-2 [&_a]:text-primary [&_a]:underline [&_blockquote]:border-l-4 [&_blockquote]:border-primary [&_blockquote]:pl-4 [&_blockquote]:italic [&_li]:ml-5 [&_ol]:list-decimal [&_p]:text-sm [&_p]:leading-6 [&_p]:text-muted-foreground [&_strong]:font-semibold [&_strong]:text-foreground [&_ul]:list-disc">
             <PortableText value={block.content} />
           </div>
         ) : null}

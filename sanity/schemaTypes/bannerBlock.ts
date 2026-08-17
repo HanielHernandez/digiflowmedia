@@ -1,4 +1,4 @@
-import { defineType } from "sanity";
+import { defineArrayMember, defineType } from "sanity";
 
 import { field } from "./define";
 
@@ -28,8 +28,43 @@ export const bannerBlock = defineType({
     field({
       name: "description",
       title: "Description",
-      type: "text",
-      rows: 4,
+      type: "array",
+      of: [
+        defineArrayMember({
+          type: "block",
+          styles: [{ title: "Normal", value: "normal" }],
+          lists: [
+            { title: "Bullet", value: "bullet" },
+            { title: "Numbered", value: "number" },
+          ],
+          marks: {
+            decorators: [
+              { title: "Strong", value: "strong" },
+              { title: "Emphasis", value: "em" },
+              { title: "Underline", value: "underline" },
+            ],
+            annotations: [
+              {
+                name: "link",
+                type: "object",
+                title: "Link",
+                fields: [
+                  field({
+                    name: "href",
+                    type: "url",
+                    title: "URL",
+                    validation: (rule) =>
+                      rule.uri({
+                        allowRelative: true,
+                        scheme: ["http", "https", "mailto", "tel"],
+                      }),
+                  }),
+                ],
+              },
+            ],
+          },
+        }),
+      ],
     }),
     field({
       name: "ctaText",

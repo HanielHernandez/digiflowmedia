@@ -23,6 +23,14 @@ export const PAGE_BY_SLUG_QUERY = defineQuery(`
       primaryUrl,
       secondaryButtonText,
       secondaryUrl,
+      panel{
+        label,
+        description,
+        title,
+        titleHighlight,
+        footer,
+        url
+      },
       metrics[]{
         _key,
         title,

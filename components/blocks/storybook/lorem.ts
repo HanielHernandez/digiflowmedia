@@ -65,13 +65,21 @@ export const mockHeroBlock: HeroSectionBlock = {
   primaryUrl: "/contact",
   secondaryButtonText: "Lorem amet",
   secondaryUrl: "/about",
+  panel: {
+    label: "Signal / 001",
+    description: mockPortableText(lorem.subtitle),
+    title: "Good work",
+    titleHighlight: "travels fast.",
+    footer: "Strategy · Design · Technology",
+    url: "/contact",
+  },
 };
 
 export const mockServiceItem = (id: string): ServiceItem => ({
   _id: id,
   name: lorem.eyebrow,
   title: lorem.title,
-  description: lorem.paragraph,
+  description: mockPortableText(lorem.paragraph),
   url: "/services",
   slug: "lorem-ipsum",
   image: mockImage(id),
@@ -139,7 +147,7 @@ export const mockBannerBlock: BannerBlock = {
   name: "Banner",
   eyebrowText: lorem.eyebrow,
   title: lorem.title,
-  description: lorem.paragraph,
+  description: mockPortableText(lorem.paragraph),
   ctaText: lorem.cta,
   ctaLink: "/contact",
   image: mockImage("banner"),
