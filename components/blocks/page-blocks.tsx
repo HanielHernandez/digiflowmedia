@@ -3,6 +3,7 @@ import { BannerBlock } from "@/components/blocks/banner-block";
 import { ContactFormBlock } from "@/components/blocks/contact-form-block";
 import { FaqsBlock } from "@/components/blocks/faqs-block";
 import { HeroSection } from "@/components/blocks/hero-section";
+import { HowItWorksBlock } from "@/components/blocks/how-it-works-block";
 import { MetricsBlock } from "@/components/blocks/metrics-block";
 import { ServiceBlock } from "@/components/blocks/service-block";
 import { TechnologiesBlock } from "@/components/blocks/technologies-block";
@@ -35,6 +36,8 @@ export function PageBlocks({ blocks }: PageBlocksProps) {
             return <ContactFormBlock key={block._key} block={block} />;
           case "faqsBlock":
             return <FaqsBlock key={block._key} block={block} />;
+          case "howItWorksBlock":
+            return <HowItWorksBlock key={block._key} block={block} />;
           default:
             return null;
         }

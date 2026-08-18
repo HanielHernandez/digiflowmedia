@@ -6,6 +6,7 @@ import { contactFormBlock } from "./contactFormBlock";
 import { faqs } from "./faqs";
 import { faqsBlock } from "./faqsBlock";
 import { heroSection } from "./heroSection";
+import { howItWorksBlock } from "./howItWorksBlock";
 import { metricsBlock } from "./metricsBlock";
 import { page } from "./page";
 import { service } from "./service";
@@ -27,5 +28,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     technologiesBlock,
     contactFormBlock,
     faqsBlock,
+    howItWorksBlock,
   ],
 };

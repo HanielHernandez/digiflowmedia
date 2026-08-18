@@ -56,6 +56,11 @@ export const PAGE_BY_SLUG_QUERY = defineQuery(`
         _id,
         question,
         answer
+      },
+      steps[]{
+        _key,
+        title,
+        description
       }
     }
   }

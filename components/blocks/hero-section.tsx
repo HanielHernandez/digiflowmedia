@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import { PortableText } from "next-sanity";
 
+import { HeroBrowserGraphic } from "@/components/blocks/hero-browser-graphic";
 import type { HeroSectionBlock } from "@/sanity/lib/pages";
 import { blockId } from "@/lib/utils";
 
@@ -77,6 +78,8 @@ export function HeroSection({ block }: HeroSectionProps) {
               ) : null}
             </div>
           ) : null}
+
+          <HeroBrowserGraphic className="mt-2 w-full max-w-md" />
         </div>
       </div>
 

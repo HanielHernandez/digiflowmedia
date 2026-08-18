@@ -138,6 +138,22 @@ export type FaqsBlock = {
   faqs?: FaqItem[];
 };
 
+export type HowItWorksStep = {
+  _key: string;
+  title?: string;
+  description?: PortableTextBlock[];
+};
+
+export type HowItWorksBlock = {
+  _key: string;
+  _type: "howItWorksBlock";
+  name?: string;
+  eyebrowText?: string;
+  title?: string;
+  description?: PortableTextBlock[];
+  steps?: HowItWorksStep[];
+};
+
 export type PageBlock =
   | HeroSectionBlock
   | ServiceBlock
@@ -146,7 +162,8 @@ export type PageBlock =
   | BannerBlock
   | TechnologiesBlock
   | ContactFormBlock
-  | FaqsBlock;
+  | FaqsBlock
+  | HowItWorksBlock;
 
 export type SanityPage = {
   _id: string;

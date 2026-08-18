@@ -8,6 +8,7 @@ import type {
   FaqItem,
   FaqsBlock,
   HeroSectionBlock,
+  HowItWorksBlock,
   MetricsBlock,
   ServiceBlock,
   ServiceItem,
@@ -203,5 +204,31 @@ export const mockFaqsBlock: FaqsBlock = {
     mockFaqItem("faq-2", "Consectetur adipiscing elit?"),
     mockFaqItem("faq-3", "Sed do eiusmod tempor?"),
     mockFaqItem("faq-4", "Ut enim ad minim veniam?"),
+  ],
+};
+
+export const mockHowItWorksBlock: HowItWorksBlock = {
+  _key: "how-it-works-1",
+  _type: "howItWorksBlock",
+  name: "HowItWorks",
+  eyebrowText: lorem.eyebrow,
+  title: lorem.title,
+  description: mockPortableText(lorem.paragraph),
+  steps: [
+    {
+      _key: "step-1",
+      title: "Discover",
+      description: mockPortableText(lorem.paragraph),
+    },
+    {
+      _key: "step-2",
+      title: "Design",
+      description: mockPortableText(lorem.paragraph),
+    },
+    {
+      _key: "step-3",
+      title: "Deliver",
+      description: mockPortableText(lorem.paragraph),
+    },
   ],
 };
