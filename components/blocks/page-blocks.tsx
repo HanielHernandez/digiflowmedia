@@ -5,6 +5,7 @@ import { FaqsBlock } from "@/components/blocks/faqs-block";
 import { HeroSection } from "@/components/blocks/hero-section";
 import { HowItWorksBlock } from "@/components/blocks/how-it-works-block";
 import { MetricsBlock } from "@/components/blocks/metrics-block";
+import { PlansAndPricingBlock } from "@/components/blocks/plans-and-pricing-block";
 import { ServiceBlock } from "@/components/blocks/service-block";
 import { TechnologiesBlock } from "@/components/blocks/technologies-block";
 import type { PageBlock } from "@/sanity/lib/pages";
@@ -38,6 +39,8 @@ export function PageBlocks({ blocks }: PageBlocksProps) {
             return <FaqsBlock key={block._key} block={block} />;
           case "howItWorksBlock":
             return <HowItWorksBlock key={block._key} block={block} />;
+          case "plansAndPricingBlock":
+            return <PlansAndPricingBlock key={block._key} block={block} />;
           default:
             return null;
         }

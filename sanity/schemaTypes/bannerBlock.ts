@@ -90,15 +90,32 @@ export const bannerBlock = defineType({
       },
     }),
     field({
-      name: "orientation",
-      title: "Orientation",
+      name: "color",
+      title: "Color",
       type: "string",
       options: {
         list: [
-          { title: "Left to Right", value: "left-to-right" },
-          { title: "Right to Left", value: "right-to-left" },
-          { title: "Top to Bottom", value: "top-to-bottom" },
-          { title: "Bottom to Top", value: "bottom-to-top" },
+          { title: "Primary", value: "primary" },
+          { title: "Secondary", value: "secondary" },
+          { title: "Pink", value: "pink" },
+        ],
+        layout: "radio",
+      },
+      initialValue: "secondary",
+      validation: (rule) => rule.required(),
+    }),
+    field({
+      name: "orientation",
+      title: "Orientation",
+      type: "string",
+      description:
+        "Where the text content sits relative to the image (content includes eyebrow, title, description, and CTA).",
+      options: {
+        list: [
+          { title: "Content Left / Image Right", value: "left-to-right" },
+          { title: "Content Right / Image Left", value: "right-to-left" },
+          { title: "Content Top / Image Bottom", value: "top-to-bottom" },
+          { title: "Content Bottom / Image Top", value: "bottom-to-top" },
         ],
         layout: "radio",
       },

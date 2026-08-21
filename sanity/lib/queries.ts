@@ -19,6 +19,7 @@ export const PAGE_BY_SLUG_QUERY = defineQuery(`
       ctaText,
       ctaLink,
       orientation,
+      color,
       primaryButtonText,
       primaryUrl,
       secondaryButtonText,
@@ -61,6 +62,15 @@ export const PAGE_BY_SLUG_QUERY = defineQuery(`
         _key,
         title,
         description
+      },
+      plans[]->{
+        _id,
+        name,
+        price,
+        title,
+        description,
+        ctaText,
+        ctaLink
       }
     }
   }

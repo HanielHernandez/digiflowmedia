@@ -9,6 +9,8 @@ import { heroSection } from "./heroSection";
 import { howItWorksBlock } from "./howItWorksBlock";
 import { metricsBlock } from "./metricsBlock";
 import { page } from "./page";
+import { plan } from "./plan";
+import { plansAndPricingBlock } from "./plansAndPricingBlock";
 import { service } from "./service";
 import { serviceBlock } from "./serviceBlock";
 import { technologiesBlock } from "./technologiesBlock";
@@ -20,6 +22,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     service,
     technology,
     faqs,
+    plan,
     heroSection,
     serviceBlock,
     aboutUsBlock,
@@ -29,5 +32,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     contactFormBlock,
     faqsBlock,
     howItWorksBlock,
+    plansAndPricingBlock,
   ],
 };

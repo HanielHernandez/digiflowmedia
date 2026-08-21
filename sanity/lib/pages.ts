@@ -83,6 +83,8 @@ export type BannerOrientation =
   | "top-to-bottom"
   | "bottom-to-top";
 
+export type BannerColor = "primary" | "secondary" | "pink";
+
 export type BannerBlock = {
   _key: string;
   _type: "bannerBlock";
@@ -93,6 +95,7 @@ export type BannerBlock = {
   ctaText?: string;
   ctaLink?: string;
   image?: SanityImageSource;
+  color?: BannerColor;
   orientation?: BannerOrientation;
 };
 
@@ -154,6 +157,26 @@ export type HowItWorksBlock = {
   steps?: HowItWorksStep[];
 };
 
+export type PlanItem = {
+  _id: string;
+  name?: string;
+  price?: string;
+  title?: string;
+  description?: PortableTextBlock[];
+  ctaText?: string;
+  ctaLink?: string;
+};
+
+export type PlansAndPricingBlock = {
+  _key: string;
+  _type: "plansAndPricingBlock";
+  name?: string;
+  eyebrowText?: string;
+  title?: string;
+  description?: PortableTextBlock[];
+  plans?: PlanItem[];
+};
+
 export type PageBlock =
   | HeroSectionBlock
   | ServiceBlock
@@ -163,7 +186,8 @@ export type PageBlock =
   | TechnologiesBlock
   | ContactFormBlock
   | FaqsBlock
-  | HowItWorksBlock;
+  | HowItWorksBlock
+  | PlansAndPricingBlock;
 
 export type SanityPage = {
   _id: string;

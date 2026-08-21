@@ -9,6 +9,7 @@ import {
   mockHeroBlock,
   mockHowItWorksBlock,
   mockMetricsBlock,
+  mockPlansAndPricingBlock,
   mockServiceBlock,
   mockTechnologiesBlock,
 } from "./storybook/lorem";
@@ -29,6 +30,7 @@ const meta = {
       mockBannerBlock,
       mockTechnologiesBlock,
       mockHowItWorksBlock,
+      mockPlansAndPricingBlock,
       mockContactFormBlock,
       mockFaqsBlock,
     ],

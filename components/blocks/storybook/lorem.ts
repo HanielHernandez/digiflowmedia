@@ -10,6 +10,7 @@ import type {
   HeroSectionBlock,
   HowItWorksBlock,
   MetricsBlock,
+  PlansAndPricingBlock,
   ServiceBlock,
   ServiceItem,
   TechnologiesBlock,
@@ -152,6 +153,7 @@ export const mockBannerBlock: BannerBlock = {
   ctaText: lorem.cta,
   ctaLink: "/contact",
   image: mockImage("banner"),
+  color: "secondary",
   orientation: "left-to-right",
 };
 
@@ -229,6 +231,44 @@ export const mockHowItWorksBlock: HowItWorksBlock = {
       _key: "step-3",
       title: "Deliver",
       description: mockPortableText(lorem.paragraph),
+    },
+  ],
+};
+
+export const mockPlansAndPricingBlock: PlansAndPricingBlock = {
+  _key: "plans-1",
+  _type: "plansAndPricingBlock",
+  name: "PlansAndPricing",
+  eyebrowText: "Pricing",
+  title: "Plans that scale with you",
+  description: mockPortableText(lorem.paragraph),
+  plans: [
+    {
+      _id: "plan-starter",
+      name: "Starter",
+      price: "$99/mo",
+      title: "Starter",
+      description: mockPortableText(lorem.paragraph),
+      ctaText: "Get started",
+      ctaLink: "/#contact",
+    },
+    {
+      _id: "plan-growth",
+      name: "Growth",
+      price: "$249/mo",
+      title: "Growth",
+      description: mockPortableText(lorem.paragraph),
+      ctaText: "Choose Growth",
+      ctaLink: "/#contact",
+    },
+    {
+      _id: "plan-enterprise",
+      name: "Enterprise",
+      price: "Custom",
+      title: "Enterprise",
+      description: mockPortableText(lorem.paragraph),
+      ctaText: "Talk to us",
+      ctaLink: "/#contact",
     },
   ],
 };

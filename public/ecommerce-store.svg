@@ -1,0 +1,161 @@
+<svg
+  viewBox="0 0 360 280"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-labelledby="ecommerce-store-title"
+>
+  <title id="ecommerce-store-title">eCommerce Store Projects</title>
+
+  <!-- Panel -->
+  <rect
+    x="8"
+    y="8"
+    width="344"
+    height="264"
+    rx="20"
+    fill="rgba(255,255,255,0.1)"
+    stroke="rgba(255,255,255,0.25)"
+    stroke-width="1.5"
+  />
+
+  <!-- Header bar -->
+  <rect x="28" y="28" width="140" height="10" rx="5" fill="rgba(255,255,255,0.35)" />
+  <rect x="28" y="46" width="88" height="7" rx="3.5" fill="#e17cf6" fill-opacity="0.8" />
+
+  <!-- Price badge -->
+  <rect
+    x="220"
+    y="28"
+    width="112"
+    height="52"
+    rx="14"
+    fill="rgba(255,255,255,0.12)"
+    stroke="rgba(255,255,255,0.25)"
+    stroke-width="1.2"
+  />
+  <text
+    x="276"
+    y="48"
+    text-anchor="middle"
+    fill="rgba(255,255,255,0.55)"
+    font-size="8"
+    letter-spacing="0.14em"
+    font-family="Inter, sans-serif"
+  >
+    STARTS AT
+  </text>
+  <text
+    x="276"
+    y="68"
+    text-anchor="middle"
+    fill="#ffffff"
+    font-size="16"
+    font-weight="700"
+    font-family="Inter, sans-serif"
+  >
+    $2,500
+  </text>
+
+  <!-- Storefront building -->
+  <g transform="translate(36 92)">
+    <!-- Awning -->
+    <path
+      d="M8 28 L20 8 H148 L160 28 Z"
+      fill="#e17cf6"
+      fill-opacity="0.35"
+      stroke="#e17cf6"
+      stroke-width="1.5"
+    />
+    <path
+      d="M20 28 H148"
+      stroke="rgba(255,255,255,0.35)"
+      stroke-width="1.5"
+      stroke-dasharray="6 4"
+    />
+
+    <!-- Building body -->
+    <rect
+      x="20"
+      y="28"
+      width="128"
+      height="110"
+      rx="6"
+      fill="rgba(255,255,255,0.08)"
+      stroke="rgba(255,255,255,0.3)"
+      stroke-width="1.5"
+    />
+
+    <!-- Window grid / products -->
+    <rect x="34" y="44" width="40" height="36" rx="4" fill="rgba(255,255,255,0.12)" />
+    <rect x="82" y="44" width="40" height="36" rx="4" fill="rgba(255,255,255,0.12)" />
+    <circle cx="54" cy="58" r="8" fill="#e17cf6" fill-opacity="0.7" />
+    <rect x="94" y="54" width="16" height="16" rx="3" fill="#ffffff" fill-opacity="0.55" />
+
+    <rect x="34" y="90" width="40" height="28" rx="4" fill="rgba(255,255,255,0.1)" />
+    <rect x="82" y="90" width="40" height="28" rx="4" fill="rgba(255,255,255,0.1)" />
+    <rect x="42" y="100" width="24" height="6" rx="3" fill="rgba(255,255,255,0.4)" />
+    <rect x="90" y="100" width="24" height="6" rx="3" fill="rgba(255,255,255,0.4)" />
+
+    <!-- Door -->
+    <rect
+      x="68"
+      y="118"
+      width="32"
+      height="20"
+      rx="3"
+      fill="rgba(255,255,255,0.18)"
+      stroke="rgba(255,255,255,0.35)"
+      stroke-width="1"
+    />
+    <circle cx="92" cy="128" r="1.8" fill="#e17cf6" />
+  </g>
+
+  <!-- Shopping bag -->
+  <g transform="translate(188 100)">
+    <path
+      d="M18 38 H86 L78 118 H26 Z"
+      fill="rgba(255,255,255,0.1)"
+      stroke="rgba(255,255,255,0.4)"
+      stroke-width="1.8"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M38 38 C38 22, 66 22, 66 38"
+      stroke="#e17cf6"
+      stroke-width="2.5"
+      stroke-linecap="round"
+      fill="none"
+    />
+    <rect x="40" y="62" width="24" height="6" rx="3" fill="rgba(255,255,255,0.45)" />
+    <rect x="36" y="76" width="32" height="5" rx="2.5" fill="rgba(255,255,255,0.25)" />
+    <circle cx="52" cy="98" r="8" fill="#27c93f" fill-opacity="0.9" />
+    <path
+      d="M48 98 L51 101 L57 94"
+      stroke="#ffffff"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      fill="none"
+    />
+  </g>
+
+  <!-- Complexity chips -->
+  <g>
+    <rect x="28" y="236" width="72" height="22" rx="11" fill="rgba(255,255,255,0.1)" />
+    <circle cx="42" cy="247" r="4" fill="#e17cf6" />
+    <rect x="52" y="244" width="36" height="6" rx="3" fill="rgba(255,255,255,0.45)" />
+
+    <rect x="108" y="236" width="78" height="22" rx="11" fill="rgba(255,255,255,0.1)" />
+    <circle cx="122" cy="247" r="4" fill="#27c93f" />
+    <rect x="132" y="244" width="40" height="6" rx="3" fill="rgba(255,255,255,0.45)" />
+
+    <rect x="194" y="236" width="68" height="22" rx="11" fill="rgba(255,255,255,0.1)" />
+    <circle cx="208" cy="247" r="4" fill="#ffffff" fill-opacity="0.7" />
+    <rect x="218" y="244" width="32" height="6" rx="3" fill="rgba(255,255,255,0.45)" />
+
+    <rect x="270" y="236" width="62" height="22" rx="11" fill="rgba(255,255,255,0.1)" />
+    <circle cx="284" cy="247" r="4" fill="#e17cf6" />
+    <rect x="294" y="244" width="26" height="6" rx="3" fill="rgba(255,255,255,0.45)" />
+  </g>
+</svg>

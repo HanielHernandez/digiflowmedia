@@ -46,3 +46,21 @@ export const BottomToTop: Story = {
     },
   },
 };
+
+export const Primary: Story = {
+  args: {
+    block: {
+      ...mockBannerBlock,
+      color: "primary",
+    },
+  },
+};
+
+export const Pink: Story = {
+  args: {
+    block: {
+      ...mockBannerBlock,
+      color: "pink",
+    },
+  },
+};
