@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowUpRightIcon } from "lucide-react";
 import { PortableText } from "next-sanity";
 
+import { bannerPortableTextComponents } from "@/components/blocks/portable-text-table";
 import type {
   BannerBlock as BannerBlockType,
   BannerColor,
@@ -54,27 +55,13 @@ export function BannerBlock({ block }: BannerBlockProps) {
         sizes="(max-width: 640px) 100vw, 480px"
       />
     </div>
-  ) : (
-    <Image
-      src="/growth-analyzer.svg"
-      alt="Digital Growth Analyzer"
-      width={360}
-      height={280}
-      className={cn(
-        "w-full shrink-0",
-        isVertical
-          ? "max-w-[480px] sm:max-w-[560px]"
-          : "max-w-[360px] sm:max-w-[420px] lg:max-w-[480px]"
-      )}
-      priority={false}
-    />
-  );
+  ) : null;
 
   const content = (
     <div
       className={cn(
         "flex min-w-0 flex-1 flex-col gap-4",
-        isVertical ? "w-full items-start text-left" : "sm:max-w-xl"
+        isVertical || !imageUrl ? "w-full items-start text-left" : "sm:max-w-xl"
       )}
     >
       {block.eyebrowText ? (
@@ -89,7 +76,10 @@ export function BannerBlock({ block }: BannerBlockProps) {
       ) : null}
       {block.description?.length ? (
         <div className="space-y-2 text-sm font-normal leading-6 opacity-80 [&_a]:underline [&_li]:ml-5 [&_ol]:list-decimal [&_strong]:font-semibold [&_strong]:opacity-100 [&_ul]:list-disc">
-          <PortableText value={block.description} />
+          <PortableText
+            value={block.description}
+            components={bannerPortableTextComponents}
+          />
         </div>
       ) : null}
       {block.ctaText && block.ctaLink ? (

@@ -64,6 +64,7 @@ export const bannerBlock = defineType({
             ],
           },
         }),
+        defineArrayMember({ type: "table" }),
       ],
     }),
     field({

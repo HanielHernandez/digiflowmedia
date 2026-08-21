@@ -177,6 +177,26 @@ export type PlansAndPricingBlock = {
   plans?: PlanItem[];
 };
 
+export type ExtrasTableRow = {
+  _key?: string;
+  cells?: string[];
+};
+
+export type ExtrasTable = {
+  hasHeader?: boolean;
+  rows?: ExtrasTableRow[];
+};
+
+export type ExtrasBlock = {
+  _key: string;
+  _type: "extrasBlock";
+  name?: string;
+  eyebrowText?: string;
+  title?: string;
+  description?: PortableTextBlock[];
+  table?: ExtrasTable;
+};
+
 export type PageBlock =
   | HeroSectionBlock
   | ServiceBlock
@@ -187,7 +207,8 @@ export type PageBlock =
   | ContactFormBlock
   | FaqsBlock
   | HowItWorksBlock
-  | PlansAndPricingBlock;
+  | PlansAndPricingBlock
+  | ExtrasBlock;
 
 export type SanityPage = {
   _id: string;

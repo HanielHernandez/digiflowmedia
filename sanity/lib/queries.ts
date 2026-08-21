@@ -71,6 +71,13 @@ export const PAGE_BY_SLUG_QUERY = defineQuery(`
         description,
         ctaText,
         ctaLink
+      },
+      table{
+        hasHeader,
+        rows[]{
+          _key,
+          cells
+        }
       }
     }
   }

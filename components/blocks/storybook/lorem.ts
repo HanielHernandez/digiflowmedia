@@ -11,6 +11,7 @@ import type {
   HowItWorksBlock,
   MetricsBlock,
   PlansAndPricingBlock,
+  ExtrasBlock,
   ServiceBlock,
   ServiceItem,
   TechnologiesBlock,
@@ -271,4 +272,36 @@ export const mockPlansAndPricingBlock: PlansAndPricingBlock = {
       ctaLink: "/#contact",
     },
   ],
+};
+
+const extrasRows = [
+  ["Add-on", "Starting at"],
+  ["Additional Page", "$150"],
+  ["Landing Page", "$300"],
+  ["Blog Setup", "$250"],
+  ["Google Business Profile Setup", "$250"],
+  ["Advanced SEO Setup", "$500"],
+  ["Booking Integration", "$300"],
+  ["CRM Integration", "$500"],
+  ["Automation Workflow", "$300"],
+  ["eCommerce Setup", "$1,500+"],
+  ["Website Performance Optimization", "$400"],
+  ["Additional Development", "$100/hr"],
+] as const;
+
+export const mockExtrasBlock: ExtrasBlock = {
+  _key: "extras-1",
+  _type: "extrasBlock",
+  name: "Extras",
+  title: "Need Something Extra?",
+  description: mockPortableText(
+    "Add only what your business actually needs."
+  ),
+  table: {
+    hasHeader: true,
+    rows: extrasRows.map((cells, index) => ({
+      _key: `extras-row-${index}`,
+      cells: [...cells],
+    })),
+  },
 };
