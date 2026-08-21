@@ -43,7 +43,7 @@ export function ServiceCard({
       </div>
 
       {service.title ? (
-        <h3 className="mb-3 text-2xl font-semibold tracking-[-0.04em]">
+        <h3 className="mb-3 text-2xl font-semibold tracking-[-0.04em] transition-colors group-hover:text-primary">
           {service.title}
         </h3>
       ) : null}
@@ -57,18 +57,22 @@ export function ServiceCard({
   );
 
   const sharedClassName = cn(
-    "group block border-b border-border py-8 md:border-b-0 md:border-r md:px-7 md:first:pl-0 md:last:border-r-0",
-    href && "transition-opacity hover:opacity-90",
+    "group block border-b border-border px-4 py-8 transition-colors md:border-b-0 md:border-r md:px-7 md:first:pl-0 md:last:border-r-0",
+    "hover:bg-muted/60",
     className
   );
 
   if (href) {
     return (
-      <Link href={href} className={sharedClassName}>
+      <Link href={href} data-animate-item className={sharedClassName}>
         {content}
       </Link>
     );
   }
 
-  return <article className={sharedClassName}>{content}</article>;
+  return (
+    <article data-animate-item className={sharedClassName}>
+      {content}
+    </article>
+  );
 }

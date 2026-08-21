@@ -42,14 +42,16 @@ export function HowItWorksBlock({ block }: HowItWorksBlockProps) {
             step ? (
               <article
                 key={step._key || index}
-                className="grid gap-4 border-b border-border py-8 sm:grid-cols-[auto_1fr] sm:gap-8"
+                data-animate-item
+                data-animate-from="left"
+                className="group grid gap-4 border-b border-border px-0 py-8 transition-colors hover:bg-muted/60 sm:grid-cols-[auto_1fr] sm:gap-8 sm:px-4"
               >
-                <span className="font-mono text-xs text-muted-foreground">
+                <span className="font-mono text-xs text-muted-foreground transition-colors group-hover:text-primary">
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <div>
                   {step.title ? (
-                    <h3 className="text-2xl font-semibold tracking-[-0.04em]">
+                    <h3 className="text-2xl font-semibold tracking-[-0.04em] transition-colors group-hover:text-primary">
                       {step.title}
                     </h3>
                   ) : null}

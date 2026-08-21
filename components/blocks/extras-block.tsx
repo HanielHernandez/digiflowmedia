@@ -50,6 +50,8 @@ export function ExtrasBlock({ block }: ExtrasBlockProps) {
         {table ? (
           <PortableTextTable
             value={table}
+            rowClassName="transition-colors hover:bg-muted/70"
+            animateRows
             className="my-0 [&_table]:text-base [&_td:last-child]:text-right [&_td:last-child]:font-mono [&_td:last-child]:tracking-[0.04em] [&_th]:border-b-2 [&_th]:border-border [&_th]:pb-4 [&_th]:font-mono [&_th]:text-xs [&_th]:uppercase [&_th]:tracking-[0.18em] [&_th]:text-muted-foreground [&_th:last-child]:text-right [&_tr]:border-border"
           />
         ) : null}

@@ -42,11 +42,15 @@ export function MetricsBlock({ block }: MetricsBlockProps) {
           const color = metric.color || "purple";
 
           return (
-            <div key={metric._key} className="text-center">
+            <div
+              key={metric._key}
+              data-animate-item
+              className="group rounded-xl px-3 py-4 text-center transition-colors hover:bg-muted/60 sm:px-4"
+            >
               {metric.title ? (
                 <p
                   className={cn(
-                    "text-5xl font-semibold tracking-[-0.07em] sm:text-7xl",
+                    "text-5xl font-semibold tracking-[-0.07em] transition-transform group-hover:scale-[1.03] sm:text-7xl",
                     colorClassMap[color]
                   )}
                 >
@@ -54,7 +58,7 @@ export function MetricsBlock({ block }: MetricsBlockProps) {
                 </p>
               ) : null}
               {metric.subtitle ? (
-                <p className="mt-2 text-sm text-muted-foreground">
+                <p className="mt-2 text-sm text-muted-foreground transition-colors group-hover:text-foreground">
                   {metric.subtitle}
                 </p>
               ) : null}

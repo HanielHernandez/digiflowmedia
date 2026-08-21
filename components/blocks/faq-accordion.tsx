@@ -27,9 +27,9 @@ export function FaqAccordion({ faqs, className }: FaqAccordionProps) {
           <AccordionItem
             key={faq._id}
             value={faq._id}
-            className="border-b border-border"
+            className="group border-b border-border px-3 transition-colors hover:bg-muted/60 sm:px-4"
           >
-            <AccordionTrigger className="py-6 text-left text-lg font-semibold hover:no-underline [&_[data-slot=accordion-trigger-icon]]:text-primary">
+            <AccordionTrigger className="py-6 text-left text-lg font-semibold transition-colors hover:no-underline group-hover:text-primary [&_[data-slot=accordion-trigger-icon]]:text-primary">
               {faq.question}
             </AccordionTrigger>
             {faq.answer?.length ? (

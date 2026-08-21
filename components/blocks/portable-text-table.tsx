@@ -17,9 +17,13 @@ export type TableValue = {
 export function PortableTextTable({
   value,
   className,
+  rowClassName,
+  animateRows = false,
 }: {
   value: TableValue;
   className?: string;
+  rowClassName?: string;
+  animateRows?: boolean;
 }) {
   const rows = value.rows?.filter(Boolean) ?? [];
   if (!rows.length) return null;
@@ -50,7 +54,12 @@ export function PortableTextTable({
             row ? (
               <tr
                 key={row._key || `row-${rowIndex}`}
-                className="border-b border-current/15 last:border-b-0"
+                data-animate-item={animateRows ? "" : undefined}
+                data-animate-from={animateRows ? "left" : undefined}
+                className={cn(
+                  "border-b border-current/15 last:border-b-0",
+                  rowClassName
+                )}
               >
                 {(row.cells ?? []).map((cell, cellIndex) => (
                   <td

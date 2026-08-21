@@ -1,6 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // GSAP ScrollTrigger + React Strict Mode double-mount often cancels tweens in dev
+  reactStrictMode: false,
+  // Keep GSAP/ScrollTrigger out of broken tree-shaking (package marks sideEffects: false)
+  transpilePackages: ["gsap"],
   images: {
     remotePatterns: [
       {

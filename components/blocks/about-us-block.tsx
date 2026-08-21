@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { PortableText } from "next-sanity";
 
+import { AboutComputerGraphic } from "@/components/blocks/about-computer-graphic";
 import type { AboutUsBlock as AboutUsBlockType } from "@/sanity/lib/pages";
 import { urlFor } from "@/sanity/lib/image";
 
@@ -12,13 +13,6 @@ export function AboutUsBlock({ block }: AboutUsBlockProps) {
   const imageUrl = block.image
     ? urlFor(block.image).width(1200).height(900).url()
     : null;
-  const watermark = (block.name || "DF")
-    .split(/\s+/)
-    .map((part) => part[0])
-    .join("")
-    .slice(0, 2)
-    .toUpperCase();
-  const year = String(new Date().getFullYear()).slice(-2);
 
   return (
     <section
@@ -31,11 +25,7 @@ export function AboutUsBlock({ block }: AboutUsBlockProps) {
             {block.eyebrowText}
           </p>
         ) : null}
-        <div className="mt-20 hidden text-8xl font-semibold leading-none tracking-[-0.09em] text-primary/15 lg:block">
-          {watermark}
-          <br />
-          {year}
-        </div>
+        <AboutComputerGraphic className="mt-16 hidden w-full max-w-[220px] lg:block" />
       </div>
 
       <div>

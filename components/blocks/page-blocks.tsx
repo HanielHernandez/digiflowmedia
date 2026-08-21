@@ -15,38 +15,54 @@ type PageBlocksProps = {
   blocks?: PageBlock[] | null;
 };
 
+function renderBlock(block: PageBlock) {
+  switch (block._type) {
+    case "heroSection":
+      return <HeroSection block={block} />;
+    case "serviceBlock":
+      return <ServiceBlock block={block} />;
+    case "aboutUsBlock":
+      return <AboutUsBlock block={block} />;
+    case "metricsBlock":
+      return <MetricsBlock block={block} />;
+    case "bannerBlock":
+      return <BannerBlock block={block} />;
+    case "technologiesBlock":
+      return <TechnologiesBlock block={block} />;
+    case "contactFormBlock":
+      return <ContactFormBlock block={block} />;
+    case "faqsBlock":
+      return <FaqsBlock block={block} />;
+    case "howItWorksBlock":
+      return <HowItWorksBlock block={block} />;
+    case "plansAndPricingBlock":
+      return <PlansAndPricingBlock block={block} />;
+    case "extrasBlock":
+      return <ExtrasBlock block={block} />;
+    default:
+      return null;
+  }
+}
+
 export function PageBlocks({ blocks }: PageBlocksProps) {
   if (!blocks?.length) return null;
 
   return (
     <>
       {blocks.map((block) => {
-        switch (block._type) {
-          case "heroSection":
-            return <HeroSection key={block._key} block={block} />;
-          case "serviceBlock":
-            return <ServiceBlock key={block._key} block={block} />;
-          case "aboutUsBlock":
-            return <AboutUsBlock key={block._key} block={block} />;
-          case "metricsBlock":
-            return <MetricsBlock key={block._key} block={block} />;
-          case "bannerBlock":
-            return <BannerBlock key={block._key} block={block} />;
-          case "technologiesBlock":
-            return <TechnologiesBlock key={block._key} block={block} />;
-          case "contactFormBlock":
-            return <ContactFormBlock key={block._key} block={block} />;
-          case "faqsBlock":
-            return <FaqsBlock key={block._key} block={block} />;
-          case "howItWorksBlock":
-            return <HowItWorksBlock key={block._key} block={block} />;
-          case "plansAndPricingBlock":
-            return <PlansAndPricingBlock key={block._key} block={block} />;
-          case "extrasBlock":
-            return <ExtrasBlock key={block._key} block={block} />;
-          default:
-            return null;
-        }
+        const content = renderBlock(block);
+        if (!content) return null;
+
+        return (
+          <div
+            key={block._key}
+            data-animate-block
+            data-block-type={block._type}
+            className="reveal w-full"
+          >
+            {content}
+          </div>
+        );
       })}
     </>
   );

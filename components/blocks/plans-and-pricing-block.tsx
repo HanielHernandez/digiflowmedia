@@ -47,15 +47,16 @@ export function PlansAndPricingBlock({ block }: PlansAndPricingBlockProps) {
               plan ? (
                 <article
                   key={plan._id}
-                  className="flex flex-col gap-4 border-b border-border px-0 py-10 md:border-b-0 md:border-r md:px-8 md:py-12 md:first:pl-0 md:last:border-r-0 md:last:pr-0"
+                  data-animate-item
+                  className="group flex flex-col gap-4 border-b border-border px-0 py-10 transition-colors hover:bg-muted/60 md:border-b-0 md:border-r md:px-8 md:py-12 md:first:pl-0 md:last:border-r-0 md:last:pr-0"
                 >
                   {plan.title ? (
-                    <h3 className="text-2xl font-semibold tracking-[-0.04em]">
+                    <h3 className="text-2xl font-semibold tracking-[-0.04em] transition-colors group-hover:text-primary">
                       {plan.title}
                     </h3>
                   ) : null}
                   {plan.price ? (
-                    <p className="font-mono text-sm uppercase tracking-[0.12em] text-primary">
+                    <p className="font-mono text-sm uppercase tracking-[0.12em] text-primary transition-transform group-hover:translate-x-0.5">
                       {plan.price}
                     </p>
                   ) : null}
@@ -67,10 +68,10 @@ export function PlansAndPricingBlock({ block }: PlansAndPricingBlockProps) {
                   {plan.ctaText && plan.ctaLink ? (
                     <Link
                       href={plan.ctaLink}
-                      className="mt-auto inline-flex items-center gap-2 pt-2 text-sm font-bold underline underline-offset-4"
+                      className="mt-auto inline-flex items-center gap-2 pt-2 text-sm font-bold underline underline-offset-4 transition-colors group-hover:text-primary"
                     >
                       {plan.ctaText}
-                      <ArrowUpRightIcon className="size-4" />
+                      <ArrowUpRightIcon className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </Link>
                   ) : null}
                 </article>
