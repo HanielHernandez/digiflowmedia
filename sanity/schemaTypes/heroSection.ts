@@ -55,6 +55,14 @@ export const heroSection = defineType({
         }),
     }),
     defineField({
+      name: "marqueeItems",
+      title: "Marquee Items",
+      type: "array" as const,
+      of: [defineArrayMember({ type: "string" })],
+      description:
+        "Scrolling labels shown directly under the hero. Defaults to Web Development, Digital Solutions, Automation, SEO.",
+    }),
+    defineField({
       name: "panel",
       title: "Feature Panel",
       type: "object",

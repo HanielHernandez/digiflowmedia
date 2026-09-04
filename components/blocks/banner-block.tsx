@@ -1,16 +1,33 @@
-import Image from "next/image";
-import Link from "next/link";
-import { ArrowUpRightIcon } from "lucide-react";
-import { PortableText } from "next-sanity";
+import {
+  Globe2Icon,
+  SearchIcon,
+  SmartphoneIcon,
+  SparklesIcon,
+  TargetIcon,
+  ZapIcon,
+  type LucideIcon,
+} from "lucide-react";
 
+import { ArrowCta } from "@/components/arrow-cta";
 import { bannerPortableTextComponents } from "@/components/blocks/portable-text-table";
+import { RoundedPhoto } from "@/components/rounded-photo";
+import { SectionEyebrow } from "@/components/section-eyebrow";
 import type {
   BannerBlock as BannerBlockType,
   BannerColor,
+  BannerFeature,
   BannerOrientation,
 } from "@/sanity/lib/pages";
+import {
+  ECOMMERCE_PHOTO,
+  isAnalyzerBanner,
+  isEcommerceBanner,
+  sanityImageAlt,
+} from "@/lib/image-alt";
+import { ANALYZER_FEATURES } from "@/lib/site-copy";
 import { urlFor } from "@/sanity/lib/image";
 import { blockId, cn } from "@/lib/utils";
+import { PortableText } from "next-sanity";
 
 type BannerBlockProps = {
   block: BannerBlockType;
@@ -29,32 +46,94 @@ const orientationClasses: Record<BannerOrientation, string> = {
   "bottom-to-top": "flex-col-reverse",
 };
 
+const FEATURE_ICONS: Record<string, LucideIcon> = {
+  zap: ZapIcon,
+  smartphone: SmartphoneIcon,
+  search: SearchIcon,
+  sparkles: SparklesIcon,
+  target: TargetIcon,
+  globe: Globe2Icon,
+};
+
+function FeatureGrid({
+  features,
+  inverted,
+}: {
+  features: BannerFeature[];
+  inverted?: boolean;
+}) {
+  return (
+    <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      {features.map((feature) => {
+        const Icon =
+          FEATURE_ICONS[feature.icon || ""] ||
+          FEATURE_ICONS[feature.title?.toLowerCase().split(" ")[0] || ""] ||
+          SparklesIcon;
+
+        return (
+          <article
+            key={`${feature.title}-${feature.description}`}
+            className={cn(
+              "rounded-2xl p-4",
+              inverted ? "bg-white/10" : "bg-background/15"
+            )}
+          >
+            <span className="mb-3 flex size-10 items-center justify-center rounded-full bg-brand-pink/20 text-brand-pink">
+              <Icon className="size-5" aria-hidden="true" />
+            </span>
+            {feature.title ? (
+              <h3 className="text-sm font-semibold">{feature.title}</h3>
+            ) : null}
+            {feature.description ? (
+              <p className="mt-1 text-xs leading-5 opacity-80">
+                {feature.description}
+              </p>
+            ) : null}
+          </article>
+        );
+      })}
+    </div>
+  );
+}
+
 export function BannerBlock({ block }: BannerBlockProps) {
-  const imageUrl = block.image
-    ? urlFor(block.image).width(800).height(620).url()
+  const analyzer = isAnalyzerBanner(block.title, block.name);
+  const ecommerce = isEcommerceBanner(block.title, block.name);
+  const cmsImageUrl = block.image
+    ? urlFor(block.image).width(800).height(800).url()
     : null;
+  const imageUrl = ecommerce
+    ? ECOMMERCE_PHOTO.src
+    : cmsImageUrl;
+  const imageAlt = ecommerce
+    ? ECOMMERCE_PHOTO.alt
+    : sanityImageAlt(block.image, block.title || "Banner");
   const color = block.color ?? "secondary";
   const orientation = block.orientation ?? "left-to-right";
   const isVertical =
     orientation === "top-to-bottom" || orientation === "bottom-to-top";
+  const features =
+    block.features?.filter((feature) => feature.title || feature.description) ??
+    [];
+  const analyzerFeatures: BannerFeature[] =
+    features.length > 0
+      ? features
+      : analyzer
+        ? ANALYZER_FEATURES.map((feature) => ({ ...feature }))
+        : [];
 
   const media = imageUrl ? (
-    <div
+    <RoundedPhoto
+      src={imageUrl}
+      alt={imageAlt}
       className={cn(
-        "relative aspect-[360/280] w-full shrink-0 overflow-hidden rounded-2xl",
+        "aspect-square w-full shrink-0",
         isVertical
           ? "max-w-[480px] sm:max-w-[560px]"
-          : "max-w-[360px] sm:max-w-[420px] lg:max-w-[480px]"
+          : "max-w-[280px] sm:max-w-[320px] lg:max-w-[360px]"
       )}
-    >
-      <Image
-        src={imageUrl}
-        alt={block.title || "Banner"}
-        fill
-        className="object-contain"
-        sizes="(max-width: 640px) 100vw, 480px"
-      />
-    </div>
+      sizes="(max-width: 640px) 100vw, 360px"
+    />
   ) : null;
 
   const content = (
@@ -65,12 +144,10 @@ export function BannerBlock({ block }: BannerBlockProps) {
       )}
     >
       {block.eyebrowText ? (
-        <p className="font-mono text-xs uppercase tracking-[0.18em] opacity-70">
-          {block.eyebrowText}
-        </p>
+        <SectionEyebrow tone="light">{block.eyebrowText}</SectionEyebrow>
       ) : null}
       {block.title ? (
-        <p className="text-2xl font-semibold tracking-[-0.03em] sm:text-3xl">
+        <p className="font-display text-2xl font-semibold tracking-[-0.03em] sm:text-3xl">
           {block.title}
         </p>
       ) : null}
@@ -82,14 +159,17 @@ export function BannerBlock({ block }: BannerBlockProps) {
           />
         </div>
       ) : null}
+      {analyzerFeatures.length ? (
+        <FeatureGrid features={analyzerFeatures} inverted />
+      ) : null}
       {block.ctaText && block.ctaLink ? (
-        <Link
+        <ArrowCta
           href={block.ctaLink}
-          className="mt-2 inline-flex w-fit items-center gap-2 text-sm font-bold underline underline-offset-4"
+          color="pink"
+          className="mt-2 text-inherit"
         >
           {block.ctaText}
-          <ArrowUpRightIcon className="size-4" />
-        </Link>
+        </ArrowCta>
       ) : null}
     </div>
   );
@@ -98,7 +178,7 @@ export function BannerBlock({ block }: BannerBlockProps) {
     <section id={blockId(block.name)} className="w-full px-6 py-8 lg:px-10">
       <div
         className={cn(
-          "mx-auto flex w-full max-w-7xl items-center justify-between gap-8 rounded-2xl px-6 py-8 sm:gap-10 sm:px-8 md:py-14",
+          "mx-auto flex w-full max-w-7xl items-center justify-between gap-8 rounded-[2rem] px-6 py-8 sm:gap-10 sm:px-8 md:py-14",
           colorClasses[color],
           orientationClasses[orientation]
         )}

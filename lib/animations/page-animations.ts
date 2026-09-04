@@ -22,6 +22,7 @@ const BLOCK_DIRECTIONS: Record<string, EnterDirection> = {
   howItWorksBlock: "left",
   plansAndPricingBlock: "up",
   extrasBlock: "left",
+  websiteCareBlock: "up",
   faqsBlock: "right",
   contactFormBlock: "up",
 };
@@ -61,7 +62,8 @@ function itemDirection(
   if (
     blockType === "plansAndPricingBlock" ||
     blockType === "serviceBlock" ||
-    blockType === "metricsBlock"
+    blockType === "metricsBlock" ||
+    blockType === "websiteCareBlock"
   ) {
     return "up";
   }
@@ -128,7 +130,8 @@ export function animateBlocksOnEnter(root: HTMLElement): void {
           delay:
             blockType === "plansAndPricingBlock" ||
             blockType === "serviceBlock" ||
-            blockType === "metricsBlock"
+            blockType === "metricsBlock" ||
+            blockType === "websiteCareBlock"
               ? itemIndex * 0.12
               : 0,
         });

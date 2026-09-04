@@ -1,4 +1,5 @@
 import { ContactForm } from "@/components/blocks/contact-form";
+import { SectionEyebrow } from "@/components/section-eyebrow";
 import type { ContactFormBlock as ContactFormBlockType } from "@/sanity/lib/pages";
 
 type ContactFormBlockProps = {
@@ -14,13 +15,13 @@ export function ContactFormBlock({ block }: ContactFormBlockProps) {
       <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[0.9fr_1.1fr]">
         <div>
           {block.eyebrowText ? (
-            <p className="mb-5 font-mono text-xs uppercase tracking-[0.2em] text-brand-pink">
-              {block.eyebrowText}
-            </p>
+            <div className="mb-5">
+              <SectionEyebrow tone="light">{block.eyebrowText}</SectionEyebrow>
+            </div>
           ) : null}
           {block.title ? (
-            <h2 className="max-w-lg text-5xl font-semibold text-white leading-[0.95] tracking-[-0.07em] sm:text-7xl">
-              {block.title}
+            <h2 className="max-w-lg text-5xl font-semibold leading-[0.95] tracking-[-0.07em] text-white sm:text-7xl">
+              {block.title.replace(/\bLest\b/i, "Let's")}
             </h2>
           ) : null}
           {block.subtitle ? (

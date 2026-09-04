@@ -9,6 +9,10 @@ import { MetricsBlock } from "@/components/blocks/metrics-block";
 import { PlansAndPricingBlock } from "@/components/blocks/plans-and-pricing-block";
 import { ServiceBlock } from "@/components/blocks/service-block";
 import { TechnologiesBlock } from "@/components/blocks/technologies-block";
+import {
+  defaultWebsiteCareBlock,
+  WebsiteCareBlock,
+} from "@/components/blocks/website-care-block";
 import type { PageBlock } from "@/sanity/lib/pages";
 
 type PageBlocksProps = {
@@ -39,9 +43,35 @@ function renderBlock(block: PageBlock) {
       return <PlansAndPricingBlock block={block} />;
     case "extrasBlock":
       return <ExtrasBlock block={block} />;
+    case "websiteCareBlock":
+      return <WebsiteCareBlock block={block} />;
     default:
       return null;
   }
+}
+
+function withWebsiteCare(blocks: PageBlock[]): PageBlock[] {
+  if (blocks.some((block) => block._type === "websiteCareBlock")) {
+    return blocks;
+  }
+
+  const extrasIndex = blocks.findIndex((block) => block._type === "extrasBlock");
+  const beforeIndex = blocks.findIndex(
+    (block) =>
+      block._type === "faqsBlock" || block._type === "contactFormBlock"
+  );
+  const insertAt =
+    extrasIndex >= 0
+      ? extrasIndex + 1
+      : beforeIndex >= 0
+        ? beforeIndex
+        : blocks.length;
+
+  return [
+    ...blocks.slice(0, insertAt),
+    defaultWebsiteCareBlock,
+    ...blocks.slice(insertAt),
+  ];
 }
 
 export function PageBlocks({ blocks }: PageBlocksProps) {
@@ -49,7 +79,7 @@ export function PageBlocks({ blocks }: PageBlocksProps) {
 
   return (
     <>
-      {blocks.map((block) => {
+      {withWebsiteCare(blocks).map((block) => {
         const content = renderBlock(block);
         if (!content) return null;
 

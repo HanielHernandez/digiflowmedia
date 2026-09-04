@@ -42,6 +42,20 @@ export const metricsBlock = defineType({
               type: "string",
             }),
             defineField({
+              name: "icon",
+              title: "Icon",
+              type: "string",
+              options: {
+                list: [
+                  { title: "Shield", value: "shield" },
+                  { title: "Phone", value: "phone" },
+                  { title: "Chart", value: "chart" },
+                  { title: "Users", value: "users" },
+                ],
+                layout: "radio",
+              },
+            }),
+            defineField({
               name: "color",
               title: "Color",
               type: "string",

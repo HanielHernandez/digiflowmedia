@@ -26,6 +26,12 @@ export const aboutUsBlock = defineType({
       validation: (rule) => rule.required(),
     }),
     field({
+      name: "titleHighlight",
+      title: "Title Highlight",
+      type: "string",
+      description: "Optional accent phrase shown in brand pink",
+    }),
+    field({
       name: "content",
       title: "Content",
       type: "array",
@@ -78,6 +84,14 @@ export const aboutUsBlock = defineType({
       options: {
         hotspot: true,
       },
+      fields: [
+        field({
+          name: "alt",
+          title: "Alternative text",
+          type: "string",
+          description: "SEO-friendly description of the image",
+        }),
+      ],
     }),
   ],
   preview: {

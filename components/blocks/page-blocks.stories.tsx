@@ -14,6 +14,7 @@ import {
   mockServiceBlock,
   mockTechnologiesBlock,
 } from "./storybook/lorem";
+import { defaultWebsiteCareBlock } from "./website-care-block";
 
 const meta = {
   title: "Blocks/Page Blocks",
@@ -33,6 +34,7 @@ const meta = {
       mockHowItWorksBlock,
       mockPlansAndPricingBlock,
       mockExtrasBlock,
+      defaultWebsiteCareBlock,
       mockContactFormBlock,
       mockFaqsBlock,
     ],

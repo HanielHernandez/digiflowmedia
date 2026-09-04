@@ -1,9 +1,6 @@
 import { PortableText } from "next-sanity";
 
-import {
-  PortableTextTable,
-  type TableValue,
-} from "@/components/blocks/portable-text-table";
+import { SectionEyebrow } from "@/components/section-eyebrow";
 import type { ExtrasBlock as ExtrasBlockType } from "@/sanity/lib/pages";
 import { blockId } from "@/lib/utils";
 
@@ -15,13 +12,9 @@ const portableTextClassName =
   "space-y-3 text-sm leading-6 text-muted-foreground [&_a]:text-primary [&_a]:underline [&_li]:ml-5 [&_ol]:list-decimal [&_strong]:font-semibold [&_strong]:text-foreground [&_ul]:list-disc";
 
 export function ExtrasBlock({ block }: ExtrasBlockProps) {
-  const table = block.table
-    ? ({
-        _type: "table" as const,
-        hasHeader: block.table.hasHeader,
-        rows: block.table.rows,
-      } satisfies TableValue)
-    : null;
+  const rows = block.table?.rows?.filter(Boolean) ?? [];
+  const hasHeader = block.table?.hasHeader !== false;
+  const dataRows = hasHeader ? rows.slice(1) : rows;
 
   return (
     <section
@@ -31,9 +24,9 @@ export function ExtrasBlock({ block }: ExtrasBlockProps) {
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 max-w-2xl">
           {block.eyebrowText ? (
-            <p className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-primary">
-              {block.eyebrowText}
-            </p>
+            <div className="mb-4">
+              <SectionEyebrow>{block.eyebrowText}</SectionEyebrow>
+            </div>
           ) : null}
           {block.title ? (
             <h2 className="text-4xl font-semibold tracking-[-0.06em] sm:text-6xl">
@@ -47,13 +40,31 @@ export function ExtrasBlock({ block }: ExtrasBlockProps) {
           ) : null}
         </div>
 
-        {table ? (
-          <PortableTextTable
-            value={table}
-            rowClassName="transition-colors hover:bg-muted/70"
-            animateRows
-            className="my-0 [&_table]:text-base [&_td:last-child]:text-right [&_td:last-child]:font-mono [&_td:last-child]:tracking-[0.04em] [&_th]:border-b-2 [&_th]:border-border [&_th]:pb-4 [&_th]:font-mono [&_th]:text-xs [&_th]:uppercase [&_th]:tracking-[0.18em] [&_th]:text-muted-foreground [&_th:last-child]:text-right [&_tr]:border-border"
-          />
+        {dataRows.length ? (
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {dataRows.map((row, index) => {
+              const [name, price] = row.cells ?? [];
+              if (!name) return null;
+
+              return (
+                <article
+                  key={row._key || `addon-${index}`}
+                  data-animate-item
+                  className="relative overflow-hidden rounded-[1.5rem] border border-border bg-background p-6 shadow-sm transition-transform hover:-translate-y-0.5"
+                >
+                  <div className="absolute inset-x-0 top-0 h-1.5 bg-linear-to-r from-primary to-brand-pink" />
+                  <h3 className="pr-4 text-lg font-semibold tracking-[-0.03em]">
+                    {name}
+                  </h3>
+                  {price ? (
+                    <p className="mt-3 font-display text-2xl font-semibold text-primary">
+                      {price}
+                    </p>
+                  ) : null}
+                </article>
+              );
+            })}
+          </div>
         ) : null}
       </div>
     </section>

@@ -1,8 +1,9 @@
+import { MetricCounter } from "@/components/metric-counter";
 import type {
   MetricColor,
   MetricsBlock as MetricsBlockType,
 } from "@/sanity/lib/pages";
-import { blockId, cn } from "@/lib/utils";
+import { blockId } from "@/lib/utils";
 
 type MetricsBlockProps = {
   block: MetricsBlockType;
@@ -16,53 +17,31 @@ const colorClassMap: Record<MetricColor, string> = {
   foreground: "text-foreground",
 };
 
-function renderMetricTitle(title: string) {
-  const match = title.match(/^(.*?)([%x×])$/i);
-  if (!match) return title;
-
-  const [, value, suffix] = match;
-  return (
-    <>
-      {value}
-      <span className="text-brand-pink">{suffix}</span>
-    </>
-  );
-}
-
 export function MetricsBlock({ block }: MetricsBlockProps) {
-  if (!block.metrics?.length) return null;
+  const metrics = block.metrics?.filter(Boolean) ?? [];
+  if (!metrics.length) return null;
+
+  const visible =
+    metrics.length === 4 ? metrics.slice(0, 3) : metrics;
 
   return (
     <section
       id={blockId(block.name)}
       className="w-full border-b border-border px-6 py-16 lg:px-10 lg:py-24"
     >
-      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-y-12 md:grid-cols-4">
-        {block.metrics.map((metric) => {
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-y-4 sm:grid-cols-3">
+        {visible.map((metric, index) => {
           const color = metric.color || "purple";
 
           return (
-            <div
+            <MetricCounter
               key={metric._key}
-              data-animate-item
-              className="group rounded-xl px-3 py-4 text-center transition-colors hover:bg-muted/60 sm:px-4"
-            >
-              {metric.title ? (
-                <p
-                  className={cn(
-                    "text-5xl font-semibold tracking-[-0.07em] transition-transform group-hover:scale-[1.03] sm:text-7xl",
-                    colorClassMap[color]
-                  )}
-                >
-                  {renderMetricTitle(metric.title)}
-                </p>
-              ) : null}
-              {metric.subtitle ? (
-                <p className="mt-2 text-sm text-muted-foreground transition-colors group-hover:text-foreground">
-                  {metric.subtitle}
-                </p>
-              ) : null}
-            </div>
+              title={metric.title || ""}
+              subtitle={metric.subtitle}
+              colorClassName={colorClassMap[color]}
+              icon={metric.icon}
+              index={index}
+            />
           );
         })}
       </div>

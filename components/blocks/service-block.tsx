@@ -1,4 +1,5 @@
 import { ServiceCard } from "@/components/blocks/service-card";
+import { SectionEyebrow } from "@/components/section-eyebrow";
 import type { ServiceBlock as ServiceBlockType } from "@/sanity/lib/pages";
 
 type ServiceBlockProps = {
@@ -17,9 +18,9 @@ export function ServiceBlock({ block }: ServiceBlockProps) {
         <div className="mb-14 flex flex-col justify-between gap-5 md:flex-row md:items-end">
           <div>
             {block.eyebrowText ? (
-              <p className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-primary">
-                {block.eyebrowText}
-              </p>
+              <div className="mb-4">
+                <SectionEyebrow>{block.eyebrowText}</SectionEyebrow>
+              </div>
             ) : null}
             {block.title ? (
               <h2 className="max-w-xl text-4xl font-semibold tracking-[-0.06em] sm:text-6xl">
@@ -35,7 +36,7 @@ export function ServiceBlock({ block }: ServiceBlockProps) {
         </div>
 
         {services.length ? (
-          <div className="grid border-t border-border md:grid-cols-3">
+          <div className="grid border-t border-border md:grid-cols-2 lg:grid-cols-3">
             {services.map((service, index) =>
               service ? (
                 <ServiceCard

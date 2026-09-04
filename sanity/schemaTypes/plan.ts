@@ -81,6 +81,18 @@ export const plan = defineType({
           scheme: ["http", "https", "mailto", "tel"],
         }),
     }),
+    defineField({
+      name: "featured",
+      title: "Featured plan",
+      type: "boolean",
+      initialValue: false,
+    }),
+    defineField({
+      name: "badge",
+      title: "Badge",
+      type: "string",
+      description: 'Optional label such as "Most Popular"',
+    }),
   ],
   preview: {
     select: {

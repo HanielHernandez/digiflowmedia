@@ -1,16 +1,16 @@
 import type { Preview } from "@storybook/nextjs-vite";
-import { Geist_Mono, Inter, Sora } from "next/font/google";
+import { Bricolage_Grotesque, Figtree, Geist_Mono } from "next/font/google";
 
 import "../app/globals.css";
 
-const inter = Inter({
+const figtree = Figtree({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-figtree",
 });
 
-const sora = Sora({
+const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
-  variable: "--font-sora",
+  variable: "--font-bricolage",
 });
 
 const geistMono = Geist_Mono({
@@ -22,7 +22,7 @@ const preview: Preview = {
   decorators: [
     (Story) => (
       <div
-        className={`${inter.variable} ${sora.variable} ${geistMono.variable} font-sans antialiased`}
+        className={`${figtree.variable} ${bricolage.variable} ${geistMono.variable} font-sans antialiased`}
       >
         <Story />
       </div>

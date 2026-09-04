@@ -17,6 +17,7 @@ import { serviceBlock } from "./serviceBlock";
 import { table, tableRow } from "./table";
 import { technologiesBlock } from "./technologiesBlock";
 import { technology } from "./technology";
+import { websiteCareBlock } from "./websiteCareBlock";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -38,5 +39,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     howItWorksBlock,
     plansAndPricingBlock,
     extrasBlock,
+    websiteCareBlock,
   ],
 };

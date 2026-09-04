@@ -68,6 +68,7 @@ export const mockHeroBlock: HeroSectionBlock = {
   primaryUrl: "/contact",
   secondaryButtonText: "Lorem amet",
   secondaryUrl: "/about",
+  marqueeItems: ["Web Development", "Digital Solutions", "Automation", "SEO"],
   panel: {
     label: "Signal / 001",
     description: mockPortableText(lorem.subtitle),
@@ -108,6 +109,7 @@ export const mockAboutUsBlock: AboutUsBlock = {
   name: "About",
   eyebrowText: lorem.eyebrow,
   title: lorem.title,
+  titleHighlight: "digital mindset",
   content: mockPortableText(lorem.paragraphLong),
   image: mockImage("about-us"),
 };
@@ -261,6 +263,8 @@ export const mockPlansAndPricingBlock: PlansAndPricingBlock = {
       description: mockPortableText(lorem.paragraph),
       ctaText: "Choose Growth",
       ctaLink: "/#contact",
+      featured: true,
+      badge: "Most Popular",
     },
     {
       _id: "plan-enterprise",

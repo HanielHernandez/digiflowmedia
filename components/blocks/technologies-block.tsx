@@ -1,5 +1,7 @@
 import { TechnologyCard } from "@/components/blocks/technology-card";
+import { SectionEyebrow } from "@/components/section-eyebrow";
 import type { TechnologiesBlock as TechnologiesBlockType } from "@/sanity/lib/pages";
+import { EXTRA_TECHNOLOGIES } from "@/lib/site-copy";
 
 type TechnologiesBlockProps = {
   block: TechnologiesBlockType;
@@ -7,6 +9,16 @@ type TechnologiesBlockProps = {
 
 export function TechnologiesBlock({ block }: TechnologiesBlockProps) {
   const technologies = block.technologies?.filter(Boolean) ?? [];
+  const existing = new Set(
+    technologies.map((tech) => tech?.name?.trim().toLowerCase()).filter(Boolean)
+  );
+  const extras = EXTRA_TECHNOLOGIES.filter(
+    (name) => !existing.has(name.toLowerCase())
+  ).map((name) => ({
+    _id: `extra-${name}`,
+    name,
+  }));
+  const all = [...technologies, ...extras];
 
   return (
     <section
@@ -16,12 +28,12 @@ export function TechnologiesBlock({ block }: TechnologiesBlockProps) {
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
         <div>
           {block.eyebrowText ? (
-            <p className="mb-5 font-mono text-xs uppercase tracking-[0.2em] text-primary-foreground/70">
-              {block.eyebrowText}
-            </p>
+            <div className="mb-5">
+              <SectionEyebrow tone="light">{block.eyebrowText}</SectionEyebrow>
+            </div>
           ) : null}
           {block.title ? (
-            <h2 className="text-4xl text-white font-semibold tracking-[-0.06em] sm:text-6xl">
+            <h2 className="text-4xl font-semibold tracking-[-0.06em] text-white sm:text-6xl">
               {block.title}
             </h2>
           ) : null}
@@ -32,9 +44,9 @@ export function TechnologiesBlock({ block }: TechnologiesBlockProps) {
           ) : null}
         </div>
 
-        {technologies.length ? (
+        {all.length ? (
           <div className="flex flex-wrap gap-3">
-            {technologies.map((tech) =>
+            {all.map((tech) =>
               tech ? (
                 <TechnologyCard key={tech._id} technology={tech} />
               ) : null

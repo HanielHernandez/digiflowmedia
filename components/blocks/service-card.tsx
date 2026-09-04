@@ -1,10 +1,9 @@
-import Image from "next/image";
 import Link from "next/link";
-import { Layers3Icon } from "lucide-react";
 import { PortableText } from "next-sanity";
 
+import { RoundedPhoto } from "@/components/rounded-photo";
 import type { ServiceItem } from "@/sanity/lib/pages";
-import { urlFor } from "@/sanity/lib/image";
+import { fallbackServicePhoto, sanityImageAlt } from "@/lib/image-alt";
 import { cn } from "@/lib/utils";
 
 type ServiceCardProps = {
@@ -18,28 +17,25 @@ export function ServiceCard({
   index = 0,
   className,
 }: ServiceCardProps) {
-  const imageUrl = service.image
-    ? urlFor(service.image).width(160).height(160).url()
-    : null;
+  const fallback = fallbackServicePhoto(service.title || service.name, index);
+  const imageUrl = fallback.src;
+  const alt = service.imageAlt || sanityImageAlt(service.image, fallback.alt);
   const href = service.url || (service.slug ? `/${service.slug}` : null);
   const number = String(index + 1).padStart(2, "0");
 
   const content = (
     <>
-      <div className="mb-16 flex items-start justify-between">
-        {imageUrl ? (
-          <div className="relative size-6 overflow-hidden transition-transform group-hover:rotate-12">
-            <Image
-              src={imageUrl}
-              alt={service.title || service.name || "Service"}
-              fill
-              sizes="24px"
-            />
-          </div>
-        ) : (
-          <Layers3Icon className="size-6 text-primary transition-transform group-hover:rotate-12" />
-        )}
-        <span className="font-mono text-xs text-muted-foreground">{number}</span>
+      <RoundedPhoto
+        src={imageUrl}
+        alt={alt}
+        className="mb-6 aspect-square w-full transition-transform duration-500 group-hover:scale-[1.02]"
+        sizes="(max-width: 768px) 100vw, 33vw"
+      />
+
+      <div className="mb-4 flex items-start justify-between gap-3">
+        <span className="font-display text-xs tracking-[0.16em] text-brand-purple uppercase">
+          {number}
+        </span>
       </div>
 
       {service.title ? (
@@ -57,7 +53,7 @@ export function ServiceCard({
   );
 
   const sharedClassName = cn(
-    "group block border-b border-border px-4 py-8 transition-colors md:border-b-0 md:border-r md:px-7 md:first:pl-0 md:last:border-r-0",
+    "group block border-b border-border px-4 py-8 transition-colors md:border-b md:border-r md:px-7 md:first:pl-0",
     "hover:bg-muted/60",
     className
   );

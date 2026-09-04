@@ -5,7 +5,8 @@ import { Logo } from "@/components/logo";
 
 const footerLinks = [
   { href: "/#services", label: "Services" },
-  { href: "/#work", label: "Work" },
+  { href: "/products/menu-pilot", label: "MenuPilot" },
+  { href: "/products/invoice-generator", label: "Invoice Generator" },
   { href: "/#about", label: "About" },
   { href: "/#contact", label: "Contact" },
 ];
@@ -23,12 +24,12 @@ export function Footer() {
               <Logo className="h-8 brightness-0 invert" />
             </Link>
             <p className="mt-3 text-xs text-background/50">
-              Digital Flow Media — creative strategy, content, and growth for
-              modern brands.
+              Digital Flow Media — websites, digital tools, and smart solutions
+              for growing businesses.
             </p>
           </div>
 
-          <div className="flex gap-5 text-xs text-background/60">
+          <div className="flex flex-wrap gap-5 text-xs text-background/60">
             {footerLinks.map((link) => (
               <Link
                 key={link.href}
@@ -44,7 +45,7 @@ export function Footer() {
           </div>
         </div>
 
-        <p className="mt-16 font-mono text-[10px] uppercase tracking-[0.15em] text-background/40">
+        <p className="mt-16 font-display text-[10px] uppercase tracking-[0.15em] text-background/40">
           © {new Date().getFullYear()} Digital Flow Media. Make something worth
           sharing.
         </p>

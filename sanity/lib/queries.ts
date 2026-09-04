@@ -24,6 +24,8 @@ export const PAGE_BY_SLUG_QUERY = defineQuery(`
       primaryUrl,
       secondaryButtonText,
       secondaryUrl,
+      marqueeItems,
+      titleHighlight,
       panel{
         label,
         description,
@@ -36,7 +38,13 @@ export const PAGE_BY_SLUG_QUERY = defineQuery(`
         _key,
         title,
         subtitle,
-        color
+        color,
+        icon
+      },
+      features[]{
+        icon,
+        title,
+        description
       },
       services[]->{
         _id,
@@ -45,7 +53,8 @@ export const PAGE_BY_SLUG_QUERY = defineQuery(`
         description,
         url,
         "slug": slug.current,
-        image
+        image,
+        "imageAlt": image.alt
       },
       technologies[]->{
         _id,
@@ -70,7 +79,17 @@ export const PAGE_BY_SLUG_QUERY = defineQuery(`
         title,
         description,
         ctaText,
-        ctaLink
+        ctaLink,
+        featured,
+        badge
+      },
+      carePlans[]{
+        title,
+        price,
+        description,
+        features,
+        featured,
+        badge
       },
       table{
         hasHeader,

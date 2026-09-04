@@ -60,6 +60,7 @@ export const page = defineType({
         defineArrayMember({ type: "howItWorksBlock" }),
         defineArrayMember({ type: "plansAndPricingBlock" }),
         defineArrayMember({ type: "extrasBlock" }),
+        defineArrayMember({ type: "websiteCareBlock" }),
       ],
     }),
   ],

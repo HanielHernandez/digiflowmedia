@@ -1,4 +1,5 @@
 import { FaqAccordion } from "@/components/blocks/faq-accordion";
+import { SectionEyebrow } from "@/components/section-eyebrow";
 import type { FaqsBlock as FaqsBlockType } from "@/sanity/lib/pages";
 import { blockId } from "@/lib/utils";
 
@@ -14,9 +15,7 @@ export function FaqsBlock({ block }: FaqsBlockProps) {
     >
       <div>
         {block.eyebrowText ? (
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-primary">
-            {block.eyebrowText}
-          </p>
+          <SectionEyebrow>{block.eyebrowText}</SectionEyebrow>
         ) : null}
         {block.title ? (
           <h2 className="mt-5 text-4xl font-semibold tracking-[-0.06em] sm:text-6xl">

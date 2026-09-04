@@ -23,6 +23,7 @@ export type HeroSectionBlock = {
   primaryUrl?: string;
   secondaryButtonText?: string;
   secondaryUrl?: string;
+  marqueeItems?: string[];
   panel?: HeroFeaturePanel;
 };
 
@@ -34,6 +35,7 @@ export type ServiceItem = {
   url?: string;
   slug?: string;
   image?: SanityImageSource;
+  imageAlt?: string;
 };
 
 export type ServiceBlock = {
@@ -52,6 +54,7 @@ export type AboutUsBlock = {
   name?: string;
   eyebrowText?: string;
   title?: string;
+  titleHighlight?: string;
   content?: PortableTextBlock[];
   image?: SanityImageSource;
 };
@@ -68,6 +71,7 @@ export type MetricItem = {
   title?: string;
   subtitle?: string;
   color?: MetricColor;
+  icon?: string;
 };
 
 export type MetricsBlock = {
@@ -85,6 +89,12 @@ export type BannerOrientation =
 
 export type BannerColor = "primary" | "secondary" | "pink";
 
+export type BannerFeature = {
+  icon?: string;
+  title?: string;
+  description?: string;
+};
+
 export type BannerBlock = {
   _key: string;
   _type: "bannerBlock";
@@ -97,6 +107,7 @@ export type BannerBlock = {
   image?: SanityImageSource;
   color?: BannerColor;
   orientation?: BannerOrientation;
+  features?: BannerFeature[];
 };
 
 export type TechnologyItem = {
@@ -165,6 +176,8 @@ export type PlanItem = {
   description?: PortableTextBlock[];
   ctaText?: string;
   ctaLink?: string;
+  featured?: boolean;
+  badge?: string;
 };
 
 export type PlansAndPricingBlock = {
@@ -197,6 +210,28 @@ export type ExtrasBlock = {
   table?: ExtrasTable;
 };
 
+export type WebsiteCarePlan = {
+  title: string;
+  price: string;
+  description?: string;
+  features?: string[];
+  featured?: boolean;
+  badge?: string;
+};
+
+export type WebsiteCareBlock = {
+  _key: string;
+  _type: "websiteCareBlock";
+  name?: string;
+  eyebrowText?: string;
+  title?: string;
+  description?: string;
+  ctaText?: string;
+  ctaLink?: string;
+  carePlans?: WebsiteCarePlan[];
+  plans?: WebsiteCarePlan[];
+};
+
 export type PageBlock =
   | HeroSectionBlock
   | ServiceBlock
@@ -208,7 +243,8 @@ export type PageBlock =
   | FaqsBlock
   | HowItWorksBlock
   | PlansAndPricingBlock
-  | ExtrasBlock;
+  | ExtrasBlock
+  | WebsiteCareBlock;
 
 export type SanityPage = {
   _id: string;
