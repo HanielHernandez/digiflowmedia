@@ -27,8 +27,8 @@ const colorClasses: Record<BannerColor, string> = {
 };
 
 const orientationClasses: Record<BannerOrientation, string> = {
-  "left-to-right": "flex-col sm:flex-row",
-  "right-to-left": "flex-col sm:flex-row-reverse",
+  "left-to-right": "flex-col-reverse lg:flex-row",
+  "right-to-left": "flex-col lg:flex-row-reverse",
   "top-to-bottom": "flex-col",
   "bottom-to-top": "flex-col-reverse",
 };
@@ -51,8 +51,8 @@ export function BannerBlock({ block }: BannerBlockProps) {
   const media = imageUrl ? (
     <div
       className={cn(
-        "w-full max-w-[600px]",
-        hasSideImage ? "min-w-0 sm:flex-[1_1_600px]" : "mx-auto"
+        "w-full min-w-0",
+        hasSideImage ? "lg:basis-0 lg:flex-1" : "mx-auto max-w-xl"
       )}
     >
       <RoundedPhoto
@@ -60,7 +60,11 @@ export function BannerBlock({ block }: BannerBlockProps) {
         alt={imageAlt}
         objectFit="contain"
         className="w-full border-none"
-        sizes="(max-width: 640px) 100vw, 600px"
+        sizes={
+          hasSideImage
+            ? "(max-width: 1023px) 100vw, 50vw"
+            : "(max-width: 640px) 100vw, 560px"
+        }
       />
     </div>
   ) : null;
@@ -71,7 +75,7 @@ export function BannerBlock({ block }: BannerBlockProps) {
         "flex min-w-0 flex-col gap-4",
         isVertical || !imageUrl
           ? "w-full flex-1 items-start text-left"
-          : "min-w-0 flex-1"
+          : "w-full lg:basis-0 lg:flex-1"
       )}
     >
       {block.eyebrowText ? (
