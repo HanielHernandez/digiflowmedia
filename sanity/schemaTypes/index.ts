@@ -4,6 +4,7 @@ import { aboutUsBlock } from "./aboutUsBlock";
 import { bannerBlock } from "./bannerBlock";
 import { contactFormBlock } from "./contactFormBlock";
 import { extrasBlock } from "./extrasBlock";
+import { featureCardsBlock } from "./featureCardsBlock";
 import { faqs } from "./faqs";
 import { faqsBlock } from "./faqsBlock";
 import { heroSection } from "./heroSection";
@@ -39,6 +40,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     howItWorksBlock,
     plansAndPricingBlock,
     extrasBlock,
+    featureCardsBlock,
     websiteCareBlock,
   ],
 };

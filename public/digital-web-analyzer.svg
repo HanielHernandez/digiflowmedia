@@ -1,0 +1,173 @@
+<svg
+  viewBox="0 0 360 280"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-labelledby="digital-web-analyzer-title"
+>
+  <title id="digital-web-analyzer-title">Digital Web Analyzer</title>
+
+  <!-- Panel -->
+  <rect
+    x="8"
+    y="8"
+    width="344"
+    height="264"
+    rx="20"
+    fill="rgba(255,255,255,0.1)"
+    stroke="rgba(255,255,255,0.25)"
+    stroke-width="1.5"
+  />
+
+  <!-- Browser window -->
+  <rect
+    x="24"
+    y="28"
+    width="200"
+    height="148"
+    rx="12"
+    fill="rgba(255,255,255,0.08)"
+    stroke="rgba(255,255,255,0.3)"
+    stroke-width="1.5"
+  />
+  <rect x="24" y="28" width="200" height="28" rx="12" fill="rgba(255,255,255,0.12)" />
+  <rect x="24" y="44" width="200" height="12" fill="rgba(255,255,255,0.12)" />
+
+  <!-- Traffic lights -->
+  <circle cx="42" cy="42" r="4" fill="#e17cf6" />
+  <circle cx="56" cy="42" r="4" fill="#8d07f1" fill-opacity="0.7" />
+  <circle cx="70" cy="42" r="4" fill="#27c93f" />
+
+  <!-- URL bar -->
+  <rect
+    x="86"
+    y="34"
+    width="122"
+    height="16"
+    rx="8"
+    fill="rgba(23,18,37,0.25)"
+    stroke="rgba(255,255,255,0.2)"
+    stroke-width="1"
+  />
+  <circle cx="96" cy="42" r="3" fill="#224afc" />
+  <rect x="104" y="39" width="72" height="6" rx="3" fill="rgba(255,255,255,0.45)" />
+
+  <!-- Webpage layout -->
+  <rect x="38" y="68" width="80" height="8" rx="4" fill="rgba(255,255,255,0.35)" />
+  <rect x="38" y="82" width="52" height="6" rx="3" fill="#e17cf6" fill-opacity="0.75" />
+
+  <rect x="38" y="98" width="54" height="36" rx="6" fill="rgba(255,255,255,0.1)" />
+  <rect x="98" y="98" width="54" height="36" rx="6" fill="rgba(255,255,255,0.1)" />
+  <rect x="158" y="98" width="50" height="36" rx="6" fill="rgba(255,255,255,0.1)" />
+
+  <rect x="46" y="110" width="38" height="6" rx="3" fill="rgba(255,255,255,0.4)" />
+  <rect x="106" y="110" width="38" height="6" rx="3" fill="rgba(255,255,255,0.4)" />
+  <rect x="166" y="110" width="34" height="6" rx="3" fill="rgba(255,255,255,0.4)" />
+
+  <rect x="38" y="142" width="170" height="22" rx="6" fill="rgba(255,255,255,0.08)" />
+
+  <!-- Scan line -->
+  <path
+    d="M38 126 H208"
+    stroke="#e17cf6"
+    stroke-width="1.5"
+    stroke-dasharray="4 4"
+    opacity="0.9"
+  />
+
+  <!-- Magnifier over the page -->
+  <g transform="translate(168 118)">
+    <circle
+      cx="18"
+      cy="18"
+      r="16"
+      fill="rgba(34,74,252,0.18)"
+      stroke="#224afc"
+      stroke-width="3"
+    />
+    <circle cx="18" cy="18" r="8" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.5" />
+    <path
+      d="M29 29 L40 40"
+      stroke="#8d07f1"
+      stroke-width="4"
+      stroke-linecap="round"
+    />
+  </g>
+
+  <!-- Score ring -->
+  <circle
+    cx="286"
+    cy="72"
+    r="38"
+    stroke="rgba(255,255,255,0.15)"
+    stroke-width="8"
+    fill="none"
+  />
+  <circle
+    cx="286"
+    cy="72"
+    r="38"
+    stroke="#e17cf6"
+    stroke-width="8"
+    stroke-linecap="round"
+    stroke-dasharray="178 239"
+    stroke-dashoffset="36"
+    fill="none"
+    transform="rotate(-90 286 72)"
+  />
+  <text
+    x="286"
+    y="68"
+    text-anchor="middle"
+    fill="#ffffff"
+    font-size="20"
+    font-weight="700"
+    font-family="Inter, sans-serif"
+  >
+    86
+  </text>
+  <text
+    x="286"
+    y="86"
+    text-anchor="middle"
+    fill="rgba(255,255,255,0.55)"
+    font-size="8"
+    letter-spacing="0.14em"
+    font-family="Inter, sans-serif"
+  >
+    WEB SCORE
+  </text>
+
+  <!-- Mini bars -->
+  <rect x="248" y="128" width="14" height="28" rx="3" fill="#224afc" fill-opacity="0.55" />
+  <rect x="268" y="118" width="14" height="38" rx="3" fill="#8d07f1" fill-opacity="0.7" />
+  <rect x="288" y="124" width="14" height="32" rx="3" fill="#e17cf6" fill-opacity="0.85" />
+  <rect x="308" y="112" width="14" height="44" rx="3" fill="#27c93f" fill-opacity="0.8" />
+
+  <!-- Analysis chips -->
+  <g>
+    <rect x="24" y="196" width="100" height="22" rx="11" fill="rgba(255,255,255,0.1)" />
+    <circle cx="38" cy="207" r="4" fill="#27c93f" />
+    <text x="48" y="211" fill="rgba(255,255,255,0.85)" font-size="9" font-family="Inter, sans-serif">Performance</text>
+
+    <rect x="132" y="196" width="88" height="22" rx="11" fill="rgba(255,255,255,0.1)" />
+    <circle cx="146" cy="207" r="4" fill="#e17cf6" />
+    <text x="156" y="211" fill="rgba(255,255,255,0.85)" font-size="9" font-family="Inter, sans-serif">Mobile</text>
+
+    <rect x="228" y="196" width="108" height="22" rx="11" fill="rgba(255,255,255,0.1)" />
+    <circle cx="242" cy="207" r="4" fill="#224afc" />
+    <text x="252" y="211" fill="rgba(255,255,255,0.85)" font-size="9" font-family="Inter, sans-serif">SEO Foundations</text>
+
+    <rect x="24" y="226" width="88" height="22" rx="11" fill="rgba(255,255,255,0.1)" />
+    <circle cx="38" cy="237" r="4" fill="#ffffff" fill-opacity="0.7" />
+    <text x="48" y="241" fill="rgba(255,255,255,0.85)" font-size="9" font-family="Inter, sans-serif">UX</text>
+
+    <rect x="120" y="226" width="112" height="22" rx="11" fill="rgba(255,255,255,0.1)" />
+    <circle cx="134" cy="237" r="4" fill="#e17cf6" />
+    <text x="144" y="241" fill="rgba(255,255,255,0.85)" font-size="9" font-family="Inter, sans-serif">Conversion</text>
+
+    <rect x="240" y="226" width="96" height="22" rx="11" fill="rgba(255,255,255,0.1)" />
+    <circle cx="254" cy="237" r="4" fill="#8d07f1" />
+    <text x="264" y="241" fill="rgba(255,255,255,0.85)" font-size="9" font-family="Inter, sans-serif">Presence</text>
+  </g>
+</svg>

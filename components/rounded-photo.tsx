@@ -8,6 +8,7 @@ type RoundedPhotoProps = {
   className?: string;
   sizes?: string;
   priority?: boolean;
+  objectFit?: "cover" | "contain";
 };
 
 export function RoundedPhoto({
@@ -16,22 +17,38 @@ export function RoundedPhoto({
   className,
   sizes,
   priority,
+  objectFit = "cover",
 }: RoundedPhotoProps) {
+  const contain = objectFit === "contain";
+
   return (
     <div
       className={cn(
         "relative overflow-hidden rounded-[1.75rem] border border-border",
+        contain ? "h-auto" : null,
         className
       )}
     >
-      <Image
-        src={src}
-        alt={alt}
-        fill
-        priority={priority}
-        className="object-cover"
-        sizes={sizes}
-      />
+      {contain ? (
+        <Image
+          src={src}
+          alt={alt}
+          width={1600}
+          height={1200}
+          priority={priority}
+          className="h-auto w-full object-contain"
+          sizes={sizes}
+        />
+      ) : (
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          priority={priority}
+          className="object-cover"
+          sizes={sizes}
+        />
+      )}
     </div>
   );
 }

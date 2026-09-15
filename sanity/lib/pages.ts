@@ -110,6 +110,16 @@ export type BannerBlock = {
   features?: BannerFeature[];
 };
 
+export type FeatureCardsBlock = {
+  _key: string;
+  _type: "featureCardsBlock";
+  name?: string;
+  eyebrowText?: string;
+  title?: string;
+  description?: PortableTextBlock[];
+  features?: BannerFeature[];
+};
+
 export type TechnologyItem = {
   _id: string;
   name?: string;
@@ -244,6 +254,7 @@ export type PageBlock =
   | HowItWorksBlock
   | PlansAndPricingBlock
   | ExtrasBlock
+  | FeatureCardsBlock
   | WebsiteCareBlock;
 
 export type SanityPage = {

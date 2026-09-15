@@ -99,45 +99,6 @@ export const bannerBlock = defineType({
       ],
     }),
     field({
-      name: "features",
-      title: "Feature cards",
-      type: "array",
-      of: [
-        defineArrayMember({
-          type: "object",
-          name: "bannerFeature",
-          title: "Feature",
-          fields: [
-            field({
-              name: "icon",
-              title: "Icon",
-              type: "string",
-              options: {
-                list: [
-                  { title: "Zap", value: "zap" },
-                  { title: "Smartphone", value: "smartphone" },
-                  { title: "Search", value: "search" },
-                  { title: "Sparkles", value: "sparkles" },
-                  { title: "Target", value: "target" },
-                  { title: "Globe", value: "globe" },
-                ],
-              },
-            }),
-            field({ name: "title", title: "Title", type: "string" }),
-            field({
-              name: "description",
-              title: "Description",
-              type: "text",
-              rows: 2,
-            }),
-          ],
-          preview: {
-            select: { title: "title", subtitle: "description" },
-          },
-        }),
-      ],
-    }),
-    field({
       name: "color",
       title: "Color",
       type: "string",

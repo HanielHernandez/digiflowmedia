@@ -3,6 +3,10 @@ import { BannerBlock } from "@/components/blocks/banner-block";
 import { ContactFormBlock } from "@/components/blocks/contact-form-block";
 import { ExtrasBlock } from "@/components/blocks/extras-block";
 import { FaqsBlock } from "@/components/blocks/faqs-block";
+import {
+  defaultFeatureCardsBlock,
+  FeatureCardsBlock,
+} from "@/components/blocks/feature-cards-block";
 import { HeroSection } from "@/components/blocks/hero-section";
 import { HowItWorksBlock } from "@/components/blocks/how-it-works-block";
 import { MetricsBlock } from "@/components/blocks/metrics-block";
@@ -13,7 +17,12 @@ import {
   defaultWebsiteCareBlock,
   WebsiteCareBlock,
 } from "@/components/blocks/website-care-block";
-import type { PageBlock } from "@/sanity/lib/pages";
+import { isAnalyzerBanner } from "@/lib/image-alt";
+import type {
+  BannerBlock as BannerBlockType,
+  FeatureCardsBlock as FeatureCardsBlockType,
+  PageBlock,
+} from "@/sanity/lib/pages";
 
 type PageBlocksProps = {
   blocks?: PageBlock[] | null;
@@ -43,11 +52,47 @@ function renderBlock(block: PageBlock) {
       return <PlansAndPricingBlock block={block} />;
     case "extrasBlock":
       return <ExtrasBlock block={block} />;
+    case "featureCardsBlock":
+      return <FeatureCardsBlock block={block} />;
     case "websiteCareBlock":
       return <WebsiteCareBlock block={block} />;
     default:
       return null;
   }
+}
+
+function withAnalyzerFeatures(blocks: PageBlock[]): PageBlock[] {
+  if (blocks.some((block) => block._type === "featureCardsBlock")) {
+    return blocks;
+  }
+
+  const analyzerIndex = blocks.findIndex(
+    (block) =>
+      block._type === "bannerBlock" &&
+      isAnalyzerBanner(
+        (block as BannerBlockType).title,
+        (block as BannerBlockType).name
+      )
+  );
+
+  if (analyzerIndex < 0) return blocks;
+
+  const analyzer = blocks[analyzerIndex] as BannerBlockType;
+  const injected: FeatureCardsBlockType = {
+    ...defaultFeatureCardsBlock,
+    features:
+      analyzer.features?.filter(
+        (feature) => feature.title || feature.description
+      ).length
+        ? analyzer.features
+        : defaultFeatureCardsBlock.features,
+  };
+
+  return [
+    ...blocks.slice(0, analyzerIndex + 1),
+    injected,
+    ...blocks.slice(analyzerIndex + 1),
+  ];
 }
 
 function withWebsiteCare(blocks: PageBlock[]): PageBlock[] {
@@ -79,7 +124,7 @@ export function PageBlocks({ blocks }: PageBlocksProps) {
 
   return (
     <>
-      {withWebsiteCare(blocks).map((block) => {
+      {withWebsiteCare(withAnalyzerFeatures(blocks)).map((block) => {
         const content = renderBlock(block);
         if (!content) return null;
 
