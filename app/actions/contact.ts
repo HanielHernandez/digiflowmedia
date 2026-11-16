@@ -1,17 +1,14 @@
 "use server";
 
 import { Resend } from "resend";
+import { validateContact, type ContactPayload } from "@/lib/contact-validation";
 
 export type ContactFormState = {
   ok: boolean;
   message: string;
 };
 
-export type ContactFormPayload = {
-  email: string;
-  about: string;
-  description: string;
-};
+export type ContactFormPayload = ContactPayload;
 
 function getResendClient() {
   const apiKey = process.env.RESEND_API_KEY;
@@ -25,18 +22,9 @@ export async function sendContactEmail(
   _prevState: ContactFormState,
   formData: FormData
 ): Promise<ContactFormState> {
-  const payload: ContactFormPayload = {
-    email: String(formData.get("email") ?? "").trim(),
-    about: String(formData.get("about") ?? "").trim(),
-    description: String(formData.get("description") ?? "").trim(),
-  };
-
-  if (!payload.email || !payload.about || !payload.description) {
-    return {
-      ok: false,
-      message: "Please fill in all fields.",
-    };
-  }
+  const result = validateContact(formData);
+  if (!result.ok) return result;
+  const { payload } = result;
 
   const from = process.env.RESEND_FROM_EMAIL;
   const to = process.env.RESEND_TO_EMAIL || from;
@@ -56,14 +44,18 @@ export async function sendContactEmail(
       replyTo: payload.email,
       subject: `Contact form: ${payload.about}`,
       text: [
+        `Name: ${payload.name}`,
         `From: ${payload.email}`,
+        `Website: ${payload.website || "Not provided"}`,
         `About: ${payload.about}`,
         "",
         payload.description,
       ].join("\n"),
       html: `
         <h2>New contact inquiry</h2>
+        <p><strong>Name:</strong> ${escapeHtml(payload.name)}</p>
         <p><strong>From:</strong> ${escapeHtml(payload.email)}</p>
+        <p><strong>Website:</strong> ${escapeHtml(payload.website || "Not provided")}</p>
         <p><strong>About:</strong> ${escapeHtml(payload.about)}</p>
         <p><strong>Message:</strong></p>
         <p>${escapeHtml(payload.description).replace(/\n/g, "<br />")}</p>

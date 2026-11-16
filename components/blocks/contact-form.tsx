@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { ArrowUpRightIcon, CheckIcon } from "lucide-react";
 
 import {
@@ -21,13 +21,19 @@ const fieldClassName = cn(
 );
 
 export function ContactForm() {
+  const [requestType, setRequestType] = useState("Free website analysis");
   const [state, formAction, pending] = useActionState(
     sendContactEmail,
     initialState
   );
 
   return (
-    <form action={formAction} className="flex flex-col gap-5">
+    <form action={formAction} className="flex flex-col gap-5" aria-busy={pending}>
+      <label className="flex flex-col gap-2 text-xs font-medium text-background/60">
+        Your name
+        <input name="name" type="text" autoComplete="name" required maxLength={120}
+          placeholder="Jane Smith" disabled={pending} className={fieldClassName} />
+      </label>
       <div className="grid gap-5 sm:grid-cols-2">
         <label className="flex flex-col gap-2 text-xs font-medium text-background/60">
           Work email
@@ -36,6 +42,7 @@ export function ContactForm() {
             name="email"
             type="email"
             required
+            maxLength={254}
             autoComplete="email"
             placeholder="jane@company.com"
             disabled={pending}
@@ -44,27 +51,38 @@ export function ContactForm() {
         </label>
 
         <label className="flex flex-col gap-2 text-xs font-medium text-background/60">
-          About
-          <input
+          I would like
+          <select
             id="about"
             name="about"
-            type="text"
             required
-            placeholder="What is this about?"
+            value={requestType}
+            onChange={(event) => setRequestType(event.target.value)}
             disabled={pending}
             className={fieldClassName}
-          />
+          >
+            <option className="bg-foreground" value="Free website analysis">Free website analysis</option>
+            <option className="bg-foreground" value="Project inquiry">Discuss a project</option>
+          </select>
         </label>
       </div>
 
       <label className="flex flex-col gap-2 text-xs font-medium text-background/60">
-        What can we help with?
+        Website URL {requestType === "Project inquiry" ? "(optional)" : ""}
+        <input name="website" type="url" autoComplete="url" maxLength={2048}
+          required={requestType === "Free website analysis"} placeholder="https://yourbusiness.com"
+          disabled={pending} className={fieldClassName} />
+      </label>
+
+      <label className="flex flex-col gap-2 text-xs font-medium text-background/60">
+        What can we help with? {requestType === "Free website analysis" ? "(optional)" : ""}
         <textarea
           id="description"
           name="description"
-          required
+          required={requestType === "Project inquiry"}
+          maxLength={5000}
           rows={4}
-          placeholder="A new brand, a digital product, a big shift..."
+          placeholder="Tell us about your business and what you would like to improve."
           disabled={pending}
           className={cn(fieldClassName, "resize-none")}
         />
@@ -84,17 +102,15 @@ export function ContactForm() {
           </>
         ) : (
           <>
-            Send inquiry
+            {requestType === "Free website analysis" ? "Get My Free Website Analysis" : "Send inquiry"}
             <ArrowUpRightIcon className="size-4" />
           </>
         )}
       </button>
 
-      {state.message && !state.ok ? (
-        <p className="text-sm text-brand-pink" role="status">
-          {state.message}
-        </p>
-      ) : null}
+      <p className="text-sm text-brand-pink" role="status" aria-live="polite">
+        {state.message}
+      </p>
     </form>
   );
 }
