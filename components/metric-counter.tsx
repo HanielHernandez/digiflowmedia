@@ -69,16 +69,17 @@ export function MetricCounter({
 }: MetricCounterProps) {
   const parsed = parseMetric(title);
   const root = useRef<HTMLDivElement>(null);
-  const [display, setDisplay] = useState(
-    parsed.value === null ? title : `${parsed.prefix}0${parsed.suffix}`
-  );
+  const [display, setDisplay] = useState(title);
 
   const Icon =
     (icon && ICON_BY_NAME[icon.toLowerCase()]) || ICONS[index % ICONS.length];
 
   useGSAP(
     () => {
-      if (parsed.value === null || !root.current) return;
+      setDisplay(title);
+      // Fractions must remain readable; animate only simple numbers.
+      if (parsed.value === null || !root.current || /\d\s*\/\s*\d/.test(title) ||
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
       const state = { val: 0 };
       gsap.to(state, {
@@ -116,7 +117,8 @@ export function MetricCounter({
           colorClassName
         )}
       >
-        {display}
+        <span className="sr-only">{title}</span>
+        <span aria-hidden="true">{display}</span>
       </p>
       {subtitle ? (
         <p className="mt-2 text-sm text-muted-foreground transition-colors group-hover:text-foreground">
