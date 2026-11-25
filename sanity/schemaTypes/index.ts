@@ -14,6 +14,7 @@ import { page } from "./page";
 import { plan } from "./plan";
 import { plansAndPricingBlock } from "./plansAndPricingBlock";
 import { productsBlock } from "./productsBlock";
+import { proseBlock } from "./proseBlock";
 import { service } from "./service";
 import { serviceBlock } from "./serviceBlock";
 import { table, tableRow } from "./table";
@@ -44,5 +45,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     featureCardsBlock,
     productsBlock,
     websiteCareBlock,
+    proseBlock,
   ],
 };

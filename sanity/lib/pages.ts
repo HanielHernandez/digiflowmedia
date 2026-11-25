@@ -161,6 +161,13 @@ export type ContactFormBlock = {
   eyebrowText?: string;
   title?: string;
   subtitle?: string;
+  phone?: string;
+  email?: string;
+  instagram?: string;
+  facebook?: string;
+  whatsapp?: string;
+  location?: string;
+  hours?: string;
 };
 
 export type FaqItem = {
@@ -246,6 +253,15 @@ export type WebsiteCarePlan = {
   badge?: string;
 };
 
+export type ProseBlock = {
+  _key: string;
+  _type: "proseBlock";
+  name?: string;
+  title?: string;
+  updated?: string;
+  content?: PortableTextBlock[];
+};
+
 export type WebsiteCareBlock = {
   _key: string;
   _type: "websiteCareBlock";
@@ -273,7 +289,8 @@ export type PageBlock =
   | ExtrasBlock
   | FeatureCardsBlock
   | ProductsBlock
-  | WebsiteCareBlock;
+  | WebsiteCareBlock
+  | ProseBlock;
 
 export type SanityPage = {
   _id: string;

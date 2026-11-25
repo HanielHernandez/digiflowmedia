@@ -63,6 +63,7 @@ export const page = defineType({
         defineArrayMember({ type: "featureCardsBlock" }),
         defineArrayMember({ type: "productsBlock" }),
         defineArrayMember({ type: "websiteCareBlock" }),
+        defineArrayMember({ type: "proseBlock" }),
       ],
     }),
   ],

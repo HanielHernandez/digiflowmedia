@@ -45,10 +45,32 @@ export function Footer() {
           </div>
         </div>
 
-        <p className="mt-16 font-display text-[10px] uppercase tracking-[0.15em] text-background/40">
-          © {new Date().getFullYear()} Digital Flow Media. Make something worth
-          sharing.
-        </p>
+        <div className="mt-16 flex flex-wrap items-center justify-between gap-4">
+          <p className="font-display text-[10px] uppercase tracking-[0.15em] text-background/40">
+            © {new Date().getFullYear()} Digital Flow Media. Make something
+            worth sharing.
+          </p>
+          <div className="flex flex-wrap gap-5 text-xs text-background/50">
+            <Link
+              href="/privacy"
+              className="transition-colors hover:text-background"
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              href="/terms"
+              className="transition-colors hover:text-background"
+            >
+              Terms of Service
+            </Link>
+            <Link
+              href="/refund-cancellation"
+              className="transition-colors hover:text-background"
+            >
+              Refund & Cancellation Policy
+            </Link>
+          </div>
+        </div>
       </div>
     </footer>
   );

@@ -9,6 +9,7 @@ import { HowItWorksBlock } from "@/components/blocks/how-it-works-block";
 import { MetricsBlock } from "@/components/blocks/metrics-block";
 import { PlansAndPricingBlock } from "@/components/blocks/plans-and-pricing-block";
 import { ProductsBlock } from "@/components/blocks/products-block";
+import { ProseBlock } from "@/components/blocks/prose-block";
 import { ServiceBlock } from "@/components/blocks/service-block";
 import { TechnologiesBlock } from "@/components/blocks/technologies-block";
 import { WebsiteCareBlock } from "@/components/blocks/website-care-block";
@@ -48,6 +49,8 @@ function renderBlock(block: PageBlock) {
       return <ProductsBlock block={block} />;
     case "websiteCareBlock":
       return <WebsiteCareBlock block={block} />;
+    case "proseBlock":
+      return <ProseBlock block={block} />;
     default:
       return null;
   }

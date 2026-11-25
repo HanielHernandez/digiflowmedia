@@ -181,6 +181,13 @@ export const mockContactFormBlock: ContactFormBlock = {
   eyebrowText: lorem.eyebrow,
   title: lorem.title,
   subtitle: lorem.paragraph,
+  email: "hello@example.com",
+  phone: "+1 (305) 555-0100",
+  whatsapp: "+1 (786) 555-0199",
+  location: "66 W Flagler St, Miami, FL 33130, United States",
+  hours: "Monday – Friday | 8:00 AM – 5:00 PM",
+  instagram: "https://instagram.com",
+  facebook: "https://facebook.com",
 };
 
 export const mockFaqItem = (id: string, question?: string): FaqItem => ({

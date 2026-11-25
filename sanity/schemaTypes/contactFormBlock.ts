@@ -31,6 +31,47 @@ export const contactFormBlock = defineType({
       type: "text",
       rows: 3,
     }),
+    field({
+      name: "phone",
+      title: "Phone",
+      type: "string",
+      description: "Shown as a call link, for example +1 305-320-9637",
+    }),
+    field({
+      name: "email",
+      title: "Email",
+      type: "string",
+      description: "Shown as a mailto link",
+    }),
+    field({
+      name: "instagram",
+      title: "Instagram",
+      type: "url",
+      validation: (rule) => rule.uri({ scheme: ["http", "https"] }),
+    }),
+    field({
+      name: "facebook",
+      title: "Facebook",
+      type: "url",
+      validation: (rule) => rule.uri({ scheme: ["http", "https"] }),
+    }),
+    field({
+      name: "whatsapp",
+      title: "WhatsApp",
+      type: "string",
+      description: "Shown under Call or WhatsApp, for example +1 (786) 600-4983",
+    }),
+    field({
+      name: "location",
+      title: "Location",
+      type: "string",
+    }),
+    field({
+      name: "hours",
+      title: "Business hours",
+      type: "string",
+      description: "For example Monday – Friday | 8:00 AM – 5:00 PM",
+    }),
   ],
   preview: {
     select: {
