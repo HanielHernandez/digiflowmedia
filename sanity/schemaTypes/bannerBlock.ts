@@ -99,6 +99,15 @@ export const bannerBlock = defineType({
       ],
     }),
     field({
+      name: "rightContent",
+      title: "Right Content",
+      type: "array",
+      description:
+        "Optional block shown beside the text instead of the image (e.g. a set of feature cards).",
+      of: [defineArrayMember({ type: "featureCardsBlock" })],
+      validation: (rule) => rule.max(1),
+    }),
+    field({
       name: "color",
       title: "Color",
       type: "string",

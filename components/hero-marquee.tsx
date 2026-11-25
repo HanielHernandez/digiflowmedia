@@ -1,4 +1,3 @@
-import { HERO_MARQUEE_ITEMS } from "@/lib/site-copy";
 import { cn } from "@/lib/utils";
 
 type HeroMarqueeProps = {
@@ -7,9 +6,9 @@ type HeroMarqueeProps = {
 };
 
 export function HeroMarquee({ items, className }: HeroMarqueeProps) {
-  const labels =
-    items?.map((item) => item.trim()).filter(Boolean) ?? [];
-  const row = labels.length ? labels : [...HERO_MARQUEE_ITEMS];
+  const row = items?.map((item) => item.trim()).filter(Boolean) ?? [];
+  if (!row.length) return null;
+
   const loop = [...row, ...row, ...row, ...row];
 
   return (

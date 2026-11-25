@@ -82,9 +82,13 @@ export const featureCardsBlock = defineType({
               type: "string",
               options: {
                 list: [
-                  { title: "Zap", value: "zap" },
-                  { title: "Smartphone", value: "smartphone" },
+                  { title: "Gauge (needle)", value: "gauge" },
+                  { title: "Phone", value: "smartphone" },
                   { title: "Search", value: "search" },
+                  { title: "Browser", value: "browser" },
+                  { title: "Graph", value: "chart" },
+                  { title: "Eye", value: "eye" },
+                  { title: "Zap", value: "zap" },
                   { title: "Sparkles", value: "sparkles" },
                   { title: "Target", value: "target" },
                   { title: "Globe", value: "globe" },

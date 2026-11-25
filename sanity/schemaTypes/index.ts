@@ -13,6 +13,7 @@ import { metricsBlock } from "./metricsBlock";
 import { page } from "./page";
 import { plan } from "./plan";
 import { plansAndPricingBlock } from "./plansAndPricingBlock";
+import { productsBlock } from "./productsBlock";
 import { service } from "./service";
 import { serviceBlock } from "./serviceBlock";
 import { table, tableRow } from "./table";
@@ -41,6 +42,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     plansAndPricingBlock,
     extrasBlock,
     featureCardsBlock,
+    productsBlock,
     websiteCareBlock,
   ],
 };

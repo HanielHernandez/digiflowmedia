@@ -69,14 +69,6 @@ export const mockHeroBlock: HeroSectionBlock = {
   secondaryButtonText: "Lorem amet",
   secondaryUrl: "/about",
   marqueeItems: ["Web Development", "Digital Solutions", "Automation", "SEO"],
-  panel: {
-    label: "Signal / 001",
-    description: mockPortableText(lorem.subtitle),
-    title: "Good work",
-    titleHighlight: "travels fast.",
-    footer: "Strategy · Design · Technology",
-    url: "/contact",
-  },
 };
 
 export const mockServiceItem = (id: string): ServiceItem => ({

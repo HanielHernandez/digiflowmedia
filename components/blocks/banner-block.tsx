@@ -1,4 +1,5 @@
 import { ArrowCta } from "@/components/arrow-cta";
+import { FeatureCardsBlock } from "@/components/blocks/feature-cards-block";
 import { bannerPortableTextComponents } from "@/components/blocks/portable-text-table";
 import { RoundedPhoto } from "@/components/rounded-photo";
 import { SectionEyebrow } from "@/components/section-eyebrow";
@@ -43,12 +44,21 @@ export function BannerBlock({ block }: BannerBlockProps) {
     ? ECOMMERCE_PHOTO.alt
     : sanityImageAlt(block.image, block.title || "Banner");
   const color = block.color ?? "secondary";
+  const isBlue = color === "secondary";
   const orientation = block.orientation ?? "left-to-right";
   const isVertical =
     orientation === "top-to-bottom" || orientation === "bottom-to-top";
-  const hasSideImage = Boolean(imageUrl) && !isVertical;
+  const rightBlock = block.rightContent?.[0];
+  const hasSide = Boolean(rightBlock || imageUrl) && !isVertical;
+  const hasSideImage = hasSide && !rightBlock;
 
-  const media = imageUrl ? (
+  const media = rightBlock ? (
+    <div className={cn("w-full min-w-0", hasSide && "lg:basis-0 lg:flex-1")}>
+      {rightBlock._type === "featureCardsBlock" ? (
+        <FeatureCardsBlock block={rightBlock} embedded />
+      ) : null}
+    </div>
+  ) : imageUrl ? (
     <div
       className={cn(
         "w-full min-w-0",
@@ -73,13 +83,15 @@ export function BannerBlock({ block }: BannerBlockProps) {
     <div
       className={cn(
         "flex min-w-0 flex-col gap-4",
-        isVertical || !imageUrl
+        isVertical || !hasSide
           ? "w-full flex-1 items-start text-left"
           : "w-full lg:basis-0 lg:flex-1"
       )}
     >
       {block.eyebrowText ? (
-        <SectionEyebrow tone="light">{block.eyebrowText}</SectionEyebrow>
+        <SectionEyebrow tone={isBlue ? "glass" : "light"}>
+          {block.eyebrowText}
+        </SectionEyebrow>
       ) : null}
       {block.title ? (
         <p className="font-display text-2xl font-semibold tracking-[-0.03em] sm:text-3xl">
@@ -97,7 +109,7 @@ export function BannerBlock({ block }: BannerBlockProps) {
       {block.ctaText && block.ctaLink ? (
         <ArrowCta
           href={block.ctaLink}
-          color="pink"
+          color={isBlue ? "glass" : "pink"}
           className="mt-2 text-inherit"
         >
           {block.ctaText}
@@ -112,7 +124,11 @@ export function BannerBlock({ block }: BannerBlockProps) {
         className={cn(
           "mx-auto flex w-full max-w-7xl items-center gap-8 rounded-[2rem] px-8 py-8 sm:gap-10 sm:px-10 md:py-12 lg:gap-12 lg:px-12",
           colorClasses[color],
-          orientationClasses[orientation]
+          rightBlock && !isVertical
+            ? orientation === "right-to-left"
+              ? "flex-col lg:flex-row-reverse"
+              : "flex-col lg:flex-row"
+            : orientationClasses[orientation]
         )}
       >
         {content}

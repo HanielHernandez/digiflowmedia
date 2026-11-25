@@ -29,13 +29,13 @@ export const SERVICE_PHOTOS = {
 } as const satisfies Record<string, LocalPhoto>;
 
 export const ABOUT_PHOTO: LocalPhoto = {
-  src: "/images/about/studio-workspace.webp",
-  alt: "Digital studio workspace with a laptop, notebook, and coffee on a white desk",
+  src: "/images/about/studio-workspace.jpg",
+  alt: "Woman working on a laptop at a home office desk",
 };
 
 export const ECOMMERCE_PHOTO: LocalPhoto = {
-  src: "/images/ecommerce/online-store.webp",
-  alt: "Shopping cart and bag representing a custom eCommerce online store",
+  src: "/images/ecommerce/online-store.jpg",
+  alt: "Mini shopping cart representing an online store",
 };
 
 const SERVICE_PHOTO_LIST = [

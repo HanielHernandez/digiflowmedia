@@ -4,15 +4,6 @@ import type { SanityImageSource } from "@sanity/image-url";
 import { client } from "./client";
 import { PAGE_BY_SLUG_QUERY } from "./queries";
 
-export type HeroFeaturePanel = {
-  label?: string;
-  description?: PortableTextBlock[];
-  title?: string;
-  titleHighlight?: string;
-  footer?: string;
-  url?: string;
-};
-
 export type HeroSectionBlock = {
   _key: string;
   _type: "heroSection";
@@ -24,7 +15,6 @@ export type HeroSectionBlock = {
   secondaryButtonText?: string;
   secondaryUrl?: string;
   marqueeItems?: string[];
-  panel?: HeroFeaturePanel;
 };
 
 export type ServiceItem = {
@@ -48,6 +38,13 @@ export type ServiceBlock = {
   services?: ServiceItem[];
 };
 
+export type AboutDifferentiator = {
+  _key?: string;
+  icon?: string;
+  title?: string;
+  description?: string;
+};
+
 export type AboutUsBlock = {
   _key: string;
   _type: "aboutUsBlock";
@@ -57,6 +54,25 @@ export type AboutUsBlock = {
   titleHighlight?: string;
   content?: PortableTextBlock[];
   image?: SanityImageSource;
+  differentiators?: AboutDifferentiator[];
+};
+
+export type ProductCard = {
+  image?: SanityImageSource;
+  title?: string;
+  description?: string;
+  ctaText?: string;
+  ctaLink?: string;
+};
+
+export type ProductsBlock = {
+  _key: string;
+  _type: "productsBlock";
+  name?: string;
+  eyebrowText?: string;
+  title?: string;
+  description?: string;
+  products?: ProductCard[];
 };
 
 export type MetricColor =
@@ -108,6 +124,7 @@ export type BannerBlock = {
   color?: BannerColor;
   orientation?: BannerOrientation;
   features?: BannerFeature[];
+  rightContent?: FeatureCardsBlock[];
 };
 
 export type FeatureCardsBlock = {
@@ -255,6 +272,7 @@ export type PageBlock =
   | PlansAndPricingBlock
   | ExtrasBlock
   | FeatureCardsBlock
+  | ProductsBlock
   | WebsiteCareBlock;
 
 export type SanityPage = {

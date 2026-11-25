@@ -60,8 +60,11 @@ export default function InvoiceGeneratorPage() {
             faster way to get paid.
           </p>
           <div className="mt-8 flex flex-col items-start gap-4">
-            <ArrowCta href="/#contact" color="pink">
-              Request early access
+            <ArrowCta
+              href="https://dev.custominvoicegenerator.com/"
+              color="pink"
+            >
+              Create an Invoice
             </ArrowCta>
             <Link
               href="/products/menu-pilot"

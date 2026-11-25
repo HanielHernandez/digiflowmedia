@@ -19,6 +19,7 @@ const BLOCK_DIRECTIONS: Record<string, EnterDirection> = {
   metricsBlock: "up",
   bannerBlock: "right",
   featureCardsBlock: "up",
+  productsBlock: "up",
   technologiesBlock: "left",
   howItWorksBlock: "left",
   plansAndPricingBlock: "up",
@@ -65,7 +66,8 @@ function itemDirection(
     blockType === "serviceBlock" ||
     blockType === "metricsBlock" ||
     blockType === "websiteCareBlock" ||
-    blockType === "featureCardsBlock"
+    blockType === "featureCardsBlock" ||
+    blockType === "productsBlock"
   ) {
     return "up";
   }

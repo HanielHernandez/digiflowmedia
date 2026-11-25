@@ -2,6 +2,8 @@
 
 import { Resend } from "resend";
 
+import { SITE_CONTACT_EMAIL } from "@/lib/site";
+
 export type ContactFormState = {
   ok: boolean;
   message: string;
@@ -39,7 +41,7 @@ export async function sendContactEmail(
   }
 
   const from = process.env.RESEND_FROM_EMAIL;
-  const to = process.env.RESEND_TO_EMAIL || from;
+  const to = SITE_CONTACT_EMAIL || process.env.RESEND_TO_EMAIL || from;
 
   if (!from || !to) {
     return {

@@ -1,0 +1,22 @@
+---
+description: Page sections come from Sanity only — never inject blocks in the frontend.
+alwaysApply: true
+---
+
+# Sanity is the source of page blocks
+
+Do not inject, synthesize, or reorder page builder blocks in the Next.js frontend.
+
+- `PageBlocks` only renders `page.blocks` from Sanity.
+- No `withX()` helpers, no default blocks spliced into the tree, no homepage-only inserts.
+- Do not overlay CMS copy in the frontend to fake missing sections.
+
+When the user asks for a new section or to place a block:
+
+1. Add or update a Sanity schema type (and register it on `page.blocks`).
+2. Migrate: create/patch the document in Sanity (MCP or Studio) with `_type`, `_key`, and fields.
+3. Insert the block in the requested position in that page’s `blocks` array.
+4. Publish the draft.
+5. Render it with a component that reads the Sanity block only.
+
+If a block is missing from a page, it is missing in Sanity — add it there, not in React.

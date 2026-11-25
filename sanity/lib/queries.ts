@@ -26,14 +26,6 @@ export const PAGE_BY_SLUG_QUERY = defineQuery(`
       secondaryUrl,
       marqueeItems,
       titleHighlight,
-      panel{
-        label,
-        description,
-        title,
-        titleHighlight,
-        footer,
-        url
-      },
       metrics[]{
         _key,
         title,
@@ -45,6 +37,19 @@ export const PAGE_BY_SLUG_QUERY = defineQuery(`
         icon,
         title,
         description
+      },
+      rightContent[]{
+        _key,
+        _type,
+        name,
+        eyebrowText,
+        title,
+        description,
+        features[]{
+          icon,
+          title,
+          description
+        }
       },
       services[]->{
         _id,
@@ -66,6 +71,19 @@ export const PAGE_BY_SLUG_QUERY = defineQuery(`
         _id,
         question,
         answer
+      },
+      differentiators[]{
+        _key,
+        icon,
+        title,
+        description
+      },
+      products[]{
+        image,
+        title,
+        description,
+        ctaText,
+        ctaLink
       },
       steps[]{
         _key,

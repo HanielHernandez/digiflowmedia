@@ -3,11 +3,10 @@ import Link from "next/link";
 
 import { SectionEyebrow } from "@/components/section-eyebrow";
 import type { WebsiteCareBlock as WebsiteCareBlockType } from "@/sanity/lib/pages";
-import { WEBSITE_CARE_PLANS } from "@/lib/site-copy";
 import { blockId, cn } from "@/lib/utils";
 
 type WebsiteCareBlockProps = {
-  block?: WebsiteCareBlockType | null;
+  block: WebsiteCareBlockType;
 };
 
 const PLAN_THEMES = [
@@ -26,20 +25,55 @@ export const defaultWebsiteCareBlock: WebsiteCareBlockType = {
     "Launching your website is only the beginning. Our Website Care plans keep your website updated, monitored, secure, and performing at its best.",
   ctaText: "Talk about care plans",
   ctaLink: "/#contact",
-  plans: WEBSITE_CARE_PLANS.map((plan) => ({
-    ...plan,
-    features: [...plan.features],
-  })),
+  carePlans: [
+    {
+      title: "Essential",
+      price: "$99/month",
+      description: "Keep your site updated, backed up, and secure.",
+      features: [
+        "WordPress updates",
+        "Plugin & theme updates",
+        "Website backups",
+        "Security monitoring",
+        "Uptime monitoring",
+        "Monthly maintenance",
+        "30 minutes of content updates",
+      ],
+    },
+    {
+      title: "Pro",
+      price: "$199/month",
+      badge: "Popular",
+      featured: true,
+      description: "Everything in Essential, plus ongoing performance care.",
+      features: [
+        "Performance monitoring",
+        "Monthly performance review",
+        "1 hour of content updates",
+        "Technical troubleshooting",
+        "SEO health monitoring",
+        "Priority support",
+      ],
+    },
+    {
+      title: "Growth",
+      price: "$349/month",
+      description: "Everything in Pro, plus conversion and SEO support.",
+      features: [
+        "2 hours of updates/development",
+        "Monthly SEO review",
+        "Conversion recommendations",
+        "Performance optimization",
+        "Priority technical support",
+        "Monthly digital health report",
+      ],
+    },
+  ],
 };
 
 export function WebsiteCareBlock({ block }: WebsiteCareBlockProps) {
-  const data = block ?? defaultWebsiteCareBlock;
-  const plans =
-    data.carePlans?.length
-      ? data.carePlans
-      : data.plans?.length
-        ? data.plans
-        : defaultWebsiteCareBlock.plans;
+  const data = block;
+  const plans = data.carePlans?.length ? data.carePlans : data.plans;
 
   return (
     <section

@@ -60,8 +60,11 @@ export default function MenuPilotPage() {
             menu. You get a tool that keeps up with the floor.
           </p>
           <div className="mt-8 flex flex-col items-start gap-4">
-            <ArrowCta href="/#contact" color="purple">
-              Talk about MenuPilot
+            <ArrowCta
+              href="https://menupilot-omega.vercel.app/"
+              color="purple"
+            >
+              Explore MenuPilot
             </ArrowCta>
             <Link
               href="/products/invoice-generator"

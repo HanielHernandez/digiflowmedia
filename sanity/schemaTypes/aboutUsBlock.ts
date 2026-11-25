@@ -78,6 +78,49 @@ export const aboutUsBlock = defineType({
       ],
     }),
     field({
+      name: "differentiators",
+      title: "Differentiators",
+      type: "array",
+      of: [
+        defineArrayMember({
+          type: "object",
+          name: "differentiator",
+          fields: [
+            field({
+              name: "icon",
+              title: "Icon",
+              type: "string",
+              options: {
+                list: [
+                  { title: "Compass", value: "compass" },
+                  { title: "Lightbulb", value: "lightbulb" },
+                  { title: "Target", value: "target" },
+                  { title: "Person", value: "user" },
+                  { title: "Puzzle", value: "puzzle" },
+                  { title: "CPU", value: "cpu" },
+                  { title: "Sparkles", value: "sparkles" },
+                  { title: "Trending up", value: "trending" },
+                  { title: "Layers", value: "layers" },
+                  { title: "Shield", value: "shield" },
+                  { title: "Zap", value: "zap" },
+                  { title: "Heart", value: "heart" },
+                ],
+              },
+            }),
+            field({ name: "title", title: "Title", type: "string" }),
+            field({
+              name: "description",
+              title: "Description",
+              type: "string",
+            }),
+          ],
+          preview: {
+            select: { title: "title", subtitle: "description" },
+          },
+        }),
+      ],
+    }),
+    field({
       name: "image",
       title: "Image",
       type: "image",

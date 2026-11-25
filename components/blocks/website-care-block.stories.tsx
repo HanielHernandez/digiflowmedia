@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
-import { WebsiteCareBlock } from "./website-care-block";
+import { WebsiteCareBlock, defaultWebsiteCareBlock } from "./website-care-block";
 
 const meta = {
   title: "Blocks/Website Care Block",
@@ -8,6 +8,9 @@ const meta = {
   tags: ["autodocs"],
   parameters: {
     layout: "fullscreen",
+  },
+  args: {
+    block: defaultWebsiteCareBlock,
   },
 } satisfies Meta<typeof WebsiteCareBlock>;
 

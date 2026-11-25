@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 type SectionEyebrowProps = {
   children: React.ReactNode;
   className?: string;
-  tone?: "pink" | "purple" | "light";
+  tone?: "pink" | "purple" | "light" | "glass";
 };
 
 export function SectionEyebrow({
@@ -18,6 +18,7 @@ export function SectionEyebrow({
         tone === "pink" && "bg-brand-pink/15 text-brand-purple",
         tone === "purple" && "bg-primary/10 text-primary",
         tone === "light" && "bg-white/10 text-brand-pink",
+        tone === "glass" && "bg-white/20 text-white",
         className
       )}
     >

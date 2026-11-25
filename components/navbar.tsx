@@ -18,15 +18,10 @@ const productLinks = [
   { href: "/products/invoice-generator", label: "Invoice Generator" },
 ];
 
-type NavbarProps = {
-  contactEmail?: string;
-};
-
-export function Navbar({ contactEmail }: NavbarProps) {
+export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
   const productsRef = useRef<HTMLDivElement>(null);
-  const mailtoHref = contactEmail ? `mailto:${contactEmail}` : "/#contact";
 
   useEffect(() => {
     function onPointerDown(event: PointerEvent) {
@@ -104,13 +99,13 @@ export function Navbar({ contactEmail }: NavbarProps) {
           </Link>
         </div>
 
-        <a
-          href={mailtoHref}
+        <Link
+          href="/#contact"
           className="hidden items-center gap-2 rounded-full bg-foreground px-4 py-2 text-sm font-semibold text-background transition-transform hover:-translate-y-0.5 md:flex"
         >
-          Start a project
+          Let’s Talk
           <ArrowUpRightIcon className="size-4" />
-        </a>
+        </Link>
 
         <button
           type="button"
@@ -154,14 +149,14 @@ export function Navbar({ contactEmail }: NavbarProps) {
           >
             Contact
           </Link>
-          <a
-            href={mailtoHref}
+          <Link
+            href="/#contact"
             onClick={() => setMenuOpen(false)}
             className="font-semibold text-primary"
           >
-            Start a project{" "}
+            Let’s Talk{" "}
             <ArrowUpRightIcon className="inline size-4" />
-          </a>
+          </Link>
         </div>
       ) : null}
     </header>
